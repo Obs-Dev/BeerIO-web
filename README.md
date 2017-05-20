@@ -24,7 +24,7 @@ git clone https://Carbondesigndevelopment@bitbucket.org/carbondesignanddevelopme
 
 ```
 #!php
-docker-compose up -d
+docker-compose up  mysql apache2
 ```
 - Visit http://localhost/
 
