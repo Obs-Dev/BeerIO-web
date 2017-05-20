@@ -26,6 +26,13 @@ git clone https://Carbondesigndevelopment@bitbucket.org/carbondesignanddevelopme
 #!php
 docker-compose up  mysql apache2
 ```
+
+- For javascript(Vue): 
+
+```
+#!javascript
+npm run watch
+```
 - Visit http://localhost/
 
 ### Contribution guidelines ###
