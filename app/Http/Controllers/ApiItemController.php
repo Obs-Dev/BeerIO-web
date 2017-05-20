@@ -4,32 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
-class ApiSearchController extends Controller
+class ApiItemController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-      $key = env('BEER_API_KEY', '');
-      try{
-        $client = new Client();
-        $q = $request->input('q');
-        $type = $request->input('type');
+        try{
+          $client = new Client();
+          $res = $client->request('GET', 'http://api.brewerydb.com/v2/search?key=a0bb8538647c35dd04265d8dad139194&q=test', []);
+          return $res->getBody();
+          //return response()->json($res->getBody());
+        }catch(Exception $ex){
+          return "there was an error";
+        }
 
-        if($type!=null)
-          $res = $client->request('GET', 'http://api.brewerydb.com/v2/search?key='.$key.'&q='.$q.'type='.$type, []);
-        else
-          $res = $client->request('GET', 'http://api.brewerydb.com/v2/search?key='.$key.'&q='.$q, []);
-        return $res->getBody();
-        //return response()->json($res->getBody());
-      }catch(Exception $ex){
-        return "there was an error";
-      }
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -57,9 +50,17 @@ class ApiSearchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $type)
     {
-        //
+      $key = env('BEER_API_KEY', '');
+      try{
+        $client = new Client();
+        $res = $client->request('GET', 'http://api.brewerydb.com/v2/'.$type.'/'.$id.'?key='.$key, []);
+        return $res->getBody();
+        //return response()->json($res->getBody());
+      }catch(Exception $ex){
+        return "there was an error";
+      }
     }
 
     /**
@@ -95,4 +96,5 @@ class ApiSearchController extends Controller
     {
         //
     }
+
 }

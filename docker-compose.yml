@@ -1,18 +1,42 @@
 version: '2'
 services:
-    web:
-        build:
-            context: ./
-            dockerfile: web.docker
-        volumes:
-            - ./:/var/www
-        ports:
-            - "8080:80"
-        links:
-            - app
-    app:
-        build:
-            context: ./
-            dockerfile: app.docker
-        volumes:
-            - ./:/var/www
+
+  # The Application
+  app:
+    build:
+      context: ./
+      dockerfile: app.docker
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    environment:
+      - "DB_PORT=3307"
+      - "DB_HOST=database"
+
+  # The Web Server
+  web:
+    build:
+      context: ./
+      dockerfile: web.docker
+    working_dir: /var/www
+    volumes_from:
+      - app
+    ports:
+      - 8080:80
+
+  mysql:
+      image: mysql:5.6
+      environment:
+        - MYSQL_DATABASE=${MYSQL_DATABASE}
+        - MYSQL_USER=${MYSQL_USER}
+        - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+        - MYSQL_ROOT_PASSWORD=root
+      volumes:
+        - ${DATA_SAVE_PATH}/mysql:/var/lib/mysql
+      ports:
+        - "${MYSQL_PORT}:3306"
+      networks:
+        - backend
+networks:
+  backend:
+    driver: "bridge"

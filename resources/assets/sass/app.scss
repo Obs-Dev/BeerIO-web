@@ -5,9 +5,36 @@
 // Variables
 @import "variables";
 
+@import "mdlcustom";
+
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 .list-image{
   max-width:200px;
+}
+.content-panel{
+
+  margin-bottom: 30px;
+}
+
+.warning-label{
+  color: red;background: #e6e0e0;padding: 10px;border-radius: 10px;/* box-shadow: inset -15px -1px 2px 0px black; */
+}
+
+.mdl-card__actions {
+  display: flex;
+  box-sizing:border-box;
+  align-items: center;
+}
+.mdl-card__actions > .mdl-button--icon {
+  margin-right: 3px;
+  margin-left: 3px;
+}
+
+.mdl-card__media > img {
+  max-width: 100%;
+}
+.mdl-card__media{
+  background-color:#FFF !important;
 }

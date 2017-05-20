@@ -40,12 +40,29 @@ Route::group(['prefix' => 'v2', 'middleware' => ['ability:super-user,create-user
 // Authentication route
 Route::post('authenticate', 'JwtAuthenticateController@authenticate');
 
+
+
+
+//App routes
 Route::group(['prefix' => 'v1'], function()
 {
   /**Api Controllers
   */
-  Route::resource('beer', 'ApiBeerController');
+  //Route::resource('item.type', 'ApiItemController');
+  Route::get('item/{id}/type/{type}','ApiItemController@show'); // get req with val will be routed to the show() function in your controller
   Route::resource('search', 'ApiSearchController');
+  Route::get('user/{id}','ApiUserController@show');
+
+});
+
+//authenticated routes
+Route::group(['prefix' => 'v1', 'middleware' => ['auth:api']], function()
+{
+  //favorites
+  Route::put('favorite','ApiFavoriteController@store');
+  Route::delete('favorite/{itemId}','ApiFavoriteController@destroy');
+  Route::get('favorite','ApiFavoriteController@index');
+  Route::get('user','ApiUserController@index');
 });
 
 // Route::group(['prefix' => 'v2', 'middleware' => ['ability:admin|guardian,na']], function()

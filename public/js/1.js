@@ -1,6 +1,41 @@
 webpackJsonp([1],{
 
-/***/ 29:
+/***/ 55:
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(3)(
+  /* script */
+  __webpack_require__(64),
+  /* template */
+  __webpack_require__(74),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "H:\\Development\\Workspace\\beerwebapp\\beerwebapp\\resources\\assets\\js\\components\\Login.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Login.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-42a810e8", Component.options)
+  } else {
+    hotAPI.reload("data-v-42a810e8", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 64:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -46,312 +81,172 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            list: [],
-            term: ''
-        };
-    },
-    mounted: function mounted() {
-        console.log('Item List Component mounted.');
-        this.term = this.$route.query.q;
-        this.fetchList(this.term);
-    },
+  data: function data() {
+    return {
+      email: null,
+      password: null,
+      errorMessage: '',
+      loadingLogin: false
+    };
+  },
+  mounted: function mounted() {
 
-    methods: {
-        fetchList: function fetchList(q) {
-            var _this = this;
+    console.log('Login Component mounted.');
+  },
 
-            axios.get('/api/v1/search?q=' + q).then(function (response) {
-                console.log(response.data);
-                _this.list = response.data;
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        search: function search(event) {
-            event.preventDefault();
-            this.fetchList(this.term);
+  methods: {
+    login: function login() {
+      var _this = this;
+
+      this.loadingLogin = true;
+      var data = {
+        client_id: "1",
+        client_secret: "WLbnPBVennWVO5kZZEre31kQ0Qb6KzobTtpoplVv",
+        grant_type: "password",
+        username: this.email,
+        password: this.password
+      };
+      this.$http.post("/oauth/token", data).then(function (response) {
+        console.log(response);
+        if (response.status == 200) {
+          console.log("Login Success. Setting Token!!");
+          _this.$auth.setToken(response.body.access_token, response.body.expires_in + Date.now());
+          _this.$router.push('/dashboard');
         }
+        _this.loadingLogin = false;
+      }, function (response) {
+        var message = "";
+        if (response.body.hint) message = response.body.hint;else message = response.body.message;
+
+        _this.errorMessage = message;
+        _this.loadingLogin = false;
+      });
     }
+  }
 });
 
 /***/ }),
 
-/***/ 34:
-/***/ (function(module, exports, __webpack_require__) {
-
-var Component = __webpack_require__(35)(
-  /* script */
-  __webpack_require__(29),
-  /* template */
-  __webpack_require__(36),
-  /* scopeId */
-  null,
-  /* cssModules */
-  null
-)
-Component.options.__file = "H:\\Development\\Workspace\\beerwebapp\\beerwebapp\\resources\\assets\\js\\components\\Items.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Items.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2a8e05bf", Component.options)
-  } else {
-    hotAPI.reload("data-v-2a8e05bf", Component.options)
-  }
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ 35:
-/***/ (function(module, exports) {
-
-// this module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle
-
-module.exports = function normalizeComponent (
-  rawScriptExports,
-  compiledTemplate,
-  scopeId,
-  cssModules
-) {
-  var esModule
-  var scriptExports = rawScriptExports = rawScriptExports || {}
-
-  // ES6 modules interop
-  var type = typeof rawScriptExports.default
-  if (type === 'object' || type === 'function') {
-    esModule = rawScriptExports
-    scriptExports = rawScriptExports.default
-  }
-
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (compiledTemplate) {
-    options.render = compiledTemplate.render
-    options.staticRenderFns = compiledTemplate.staticRenderFns
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = scopeId
-  }
-
-  // inject cssModules
-  if (cssModules) {
-    var computed = Object.create(options.computed || null)
-    Object.keys(cssModules).forEach(function (key) {
-      var module = cssModules[key]
-      computed[key] = function () { return module }
-    })
-    options.computed = computed
-  }
-
-  return {
-    esModule: esModule,
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
-
-/***/ 36:
+/***/ 74:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "items"
+    staticClass: "login"
   }, [_c('div', {
     staticClass: "mdl-grid"
+  }, [_c('div', {
+    staticClass: "mdl-layout-spacer"
+  }), _vm._v(" "), _c('div', {
+    staticClass: "mdl-cell mdl-cell--4-col"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.loadingLogin),
+      expression: "loadingLogin"
+    }],
+    staticClass: "mdl-spinner mdl-js-spinner is-active"
+  }), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (!_vm.loadingLogin),
+      expression: "!loadingLogin"
+    }],
+    staticClass: "mdl-layout mdl-js-layout mdl-color--grey-100"
+  }, [_c('main', {
+    staticClass: "mdl-layout__content"
+  }, [_c('div', {
+    staticClass: "mdl-card mdl-shadow--6dp"
   }, [_vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "mdl-cell mdl-cell--9-col"
-  }, [_c('h4', [_vm._v("Search Items")]), _vm._v(" "), _c('form', {
-    on: {
-      "submit": _vm.search
+    staticClass: "mdl-card__supporting-text"
+  }, [(_vm.errorMessage) ? _c('span', [_c('p', {
+    staticClass: "warning-label"
+  }, [_vm._v(_vm._s(_vm.errorMessage))])]) : _vm._e(), _vm._v(" "), _c('form', {
+    attrs: {
+      "action": "#"
     }
   }, [_c('div', {
-    staticClass: "mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
+    staticClass: "mdl-textfield mdl-js-textfield"
   }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.term),
-      expression: "term"
+      value: (_vm.email),
+      expression: "email"
     }],
     staticClass: "mdl-textfield__input",
     attrs: {
       "type": "text",
-      "id": "search-text"
+      "id": "email"
     },
     domProps: {
-      "value": (_vm.term)
+      "value": (_vm.email)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.term = $event.target.value
+        _vm.email = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
     staticClass: "mdl-textfield__label",
     attrs: {
-      "for": "search-text"
+      "for": "email"
     }
-  }, [_vm._v("Search:")])])]), _vm._v(" "), _c('ul', {
-    staticClass: "list-group"
-  }, [(!_vm.list.data) ? _c('span', [_vm._v("\n        Nothing Found!\n      ")]) : _vm._e(), _vm._v(" "), _vm._l((_vm.list.data), function(item) {
-    return _c('li', {
-      staticClass: "list-group-item"
-    }, [_c('section', {
-      staticClass: "section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp"
-    }, [(item.labels) ? _c('span', [_c('img', {
-      staticClass: "list-image",
-      attrs: {
-        "src": item.labels.medium
+  }, [_vm._v("Email")])]), _vm._v(" "), _c('div', {
+    staticClass: "mdl-textfield mdl-js-textfield"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.password),
+      expression: "password"
+    }],
+    staticClass: "mdl-textfield__input",
+    attrs: {
+      "type": "password",
+      "id": "userpass"
+    },
+    domProps: {
+      "value": (_vm.password)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.password = $event.target.value
       }
-    })]) : _c('span', [_c('img', {
-      staticClass: "list-image",
-      attrs: {
-        "src": "https://www.crafthounds.com/wp-content/uploads/2016/11/No-Image-Available.png"
-      }
-    })]), _vm._v(" "), _c('div', {
-      staticClass: "mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone"
-    }, [_c('div', {
-      staticClass: "mdl-card__supporting-text"
-    }, [_c('h4', [_vm._v(_vm._s(item.nameDisplay))]), _vm._v("\n              " + _vm._s(item.description) + "\n            ")]), _vm._v(" "), _vm._m(1, true)]), _vm._v(" "), _vm._m(2, true), _vm._v(" "), _vm._m(3, true)])])
-  })], 2)])])])
+    }
+  }), _vm._v(" "), _c('label', {
+    staticClass: "mdl-textfield__label",
+    attrs: {
+      "for": "userpass"
+    }
+  }, [_vm._v("Password")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "mdl-card__actions mdl-card--border"
+  }, [_c('button', {
+    staticClass: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect",
+    on: {
+      "click": _vm.login
+    }
+  }, [_vm._v("Sign In ")])])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "mdl-layout-spacer"
+  })])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "mdl-cell mdl-cell--3-col"
-  }, [_c('h4', [_vm._v("Criteria")]), _vm._v(" "), _c('h5', [_vm._v("Types")]), _vm._v(" "), _c('label', {
-    staticClass: "mdl-checkbox mdl-js-checkbox",
-    attrs: {
-      "for": "beer"
-    }
-  }, [_c('input', {
-    staticClass: "mdl-checkbox__input",
-    attrs: {
-      "type": "checkbox",
-      "id": "beer",
-      "checked": ""
-    }
-  }), _vm._v(" "), _c('span', {
-    staticClass: "mdl-checkbox__label"
-  }, [_vm._v("Beer")])]), _vm._v(" "), _c('label', {
-    staticClass: "mdl-checkbox mdl-js-checkbox",
-    attrs: {
-      "for": "brewery"
-    }
-  }, [_c('input', {
-    staticClass: "mdl-checkbox__input",
-    attrs: {
-      "type": "checkbox",
-      "id": "brewery",
-      "checked": ""
-    }
-  }), _vm._v(" "), _c('span', {
-    staticClass: "mdl-checkbox__label"
-  }, [_vm._v("Brewery")])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "mdl-card__actions"
-  }, [_c('a', {
-    staticClass: "mdl-button",
-    attrs: {
-      "href": "#"
-    }
-  }, [_vm._v("Read more")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('button', {
-    staticClass: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon",
-    attrs: {
-      "id": "btn1",
-      "data-upgraded": ",MaterialButton,MaterialRipple"
-    }
-  }, [_c('i', {
-    staticClass: "material-icons"
-  }, [_vm._v("more_vert")]), _vm._v(" "), _c('span', {
-    staticClass: "mdl-button__ripple-container"
-  }, [_c('span', {
-    staticClass: "mdl-ripple"
-  })])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "mdl-menu__container is-upgraded"
-  }, [_c('div', {
-    staticClass: "mdl-menu__outline mdl-menu--bottom-right"
-  }), _c('ul', {
-    staticClass: "mdl-menu mdl-js-menu mdl-menu--bottom-right",
-    attrs: {
-      "for": "btn1",
-      "data-upgraded": ",MaterialMenu"
-    }
-  }, [_c('li', {
-    staticClass: "mdl-menu__item",
-    attrs: {
-      "tabindex": "-1"
-    }
-  }, [_vm._v("Lorem")]), _vm._v(" "), _c('li', {
-    staticClass: "mdl-menu__item",
-    attrs: {
-      "disabled": "",
-      "tabindex": "-1"
-    }
-  }, [_vm._v("Ipsum")]), _vm._v(" "), _c('li', {
-    staticClass: "mdl-menu__item",
-    attrs: {
-      "tabindex": "-1"
-    }
-  }, [_vm._v("Dolor")])])])
+    staticClass: "mdl-card__title mdl-color--secondary mdl-color-text--grey"
+  }, [_c('h2', {
+    staticClass: "mdl-card__title-text"
+  }, [_vm._v("Login")])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-2a8e05bf", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-42a810e8", module.exports)
   }
 }
 

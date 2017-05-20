@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
-class ApiSearchController extends Controller
+use App\Models\User;
+use Auth;
+
+class ApiUserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,21 +16,8 @@ class ApiSearchController extends Controller
      */
     public function index(Request $request)
     {
-      $key = env('BEER_API_KEY', '');
-      try{
-        $client = new Client();
-        $q = $request->input('q');
-        $type = $request->input('type');
-
-        if($type!=null)
-          $res = $client->request('GET', 'http://api.brewerydb.com/v2/search?key='.$key.'&q='.$q.'type='.$type, []);
-        else
-          $res = $client->request('GET', 'http://api.brewerydb.com/v2/search?key='.$key.'&q='.$q, []);
-        return $res->getBody();
-        //return response()->json($res->getBody());
-      }catch(Exception $ex){
-        return "there was an error";
-      }
+      $user = User::find(Auth::user()->id);
+      return response()->json(['data' => $user], 200);
     }
 
     /**
@@ -59,7 +49,8 @@ class ApiSearchController extends Controller
      */
     public function show($id)
     {
-        //
+      $user = User::find($id);
+      return response()->json(['data' => $user], 200);
     }
 
     /**
