@@ -8,8 +8,8 @@ This is the web app version of the beerIO application.
 
 ### Dependencies ###
 - [GIT](https://git-scm.com/download/)
-
 - [Docker and Docker-Compose](https://docs.docker.com/engine/installation/)
+- [NPM](https://docs.docker.com/engine/installation/)
 
 ### How do I get set up? ###
 
@@ -26,7 +26,7 @@ git clone https://Carbondesigndevelopment@bitbucket.org/carbondesignanddevelopme
 #!php
 docker-compose up -d
 ```
-- Visit http://localhost:8080/
+- Visit http://localhost/
 
 ### Contribution guidelines ###
 
