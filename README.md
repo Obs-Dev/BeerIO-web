@@ -17,21 +17,21 @@ This is the web app version of the beerIO application.
 
 ```
 #!php
-git clone https://Carbondesigndevelopment@bitbucket.org/carbondesignanddevelopment/beerio-web2.git
+$ git clone https://Carbondesigndevelopment@bitbucket.org/carbondesignanddevelopment/beerio-web2.git
 ```
 
 - Run docker: 
 
 ```
 #!php
-docker-compose up  mysql apache2
+$ docker-compose up  mysql apache2
 ```
 
 - For javascript(Vue): 
 
 ```
 #!javascript
-npm run watch
+$ npm run watch
 ```
 
 - Run and seed migrations in the laradock folder via bash inside the workspace
@@ -39,8 +39,8 @@ npm run watch
 
 ```
 #!php
-PS H:\Development\Workspace\beerwebapp\beerwebapp> cd laradock
-PS H:\Development\Workspace\beerwebapp\beerwebapp\laradock> docker-compose exec workspace bash
+$ cd laradock
+$ docker-compose exec workspace bash
 ```
 
 
