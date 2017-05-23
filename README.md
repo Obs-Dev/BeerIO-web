@@ -33,6 +33,17 @@ docker-compose up  mysql apache2
 #!javascript
 npm run watch
 ```
+
+- Run and seed migrations in the laradock folder via bash inside the workspace
+
+
+```
+#!php
+PS H:\Development\Workspace\beerwebapp\beerwebapp> cd laradock
+PS H:\Development\Workspace\beerwebapp\beerwebapp\laradock> docker-compose exec workspace bash
+```
+
+
 - Visit http://localhost/
 
 ### Contribution guidelines ###
