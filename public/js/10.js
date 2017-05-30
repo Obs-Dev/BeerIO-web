@@ -167,6 +167,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -176,7 +190,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             loadingDetail: true,
             isAuthenticated: false,
             favorited: false,
-            message: 'item detail'
+            message: 'item detail',
+            comments: []
         };
     },
     created: function created() {},
@@ -186,6 +201,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.fetchItemDetail(this.$route.params.id, this.$route.params.type);
         this.isAuthenticated = this.$auth.isAuthenticated();
         this.fetchFavorite(this.$route.params.id);
+        this.fetchComments(this.$route.params.id);
     }
 });
 
@@ -238,7 +254,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone"
   }, [_c('div', {
     staticClass: "mdl-card__supporting-text"
-  }, [_c('h4', [_vm._v(_vm._s(_vm.item.data.name)), _c('small', [(_vm.item.data.abv) ? _c('span', [_vm._v("\n                          (" + _vm._s(_vm.item.data.abv) + "%)\n                        ")]) : _vm._e(), _vm._v(" "), (_vm.item.data.established) ? _c('span', [_vm._v("\n                          (EST. " + _vm._s(_vm.item.data.established) + ")\n                        ")]) : _vm._e()])]), _vm._v("\n\n                        " + _vm._s(_vm.item.data.description)), _c('br'), _c('br'), _vm._v(" "), (this.$auth.isAuthenticated()) ? _c('span', [(this.favorited) ? _c('span', [_c('button', {
+  }, [_c('h4', [_vm._v(_vm._s(_vm.item.data.name)), _c('small', [(_vm.item.data.abv) ? _c('span', [_vm._v("\n                            (" + _vm._s(_vm.item.data.abv) + "%)\n                          ")]) : _vm._e(), _vm._v(" "), (_vm.item.data.established) ? _c('span', [_vm._v("\n                            (EST. " + _vm._s(_vm.item.data.established) + ")\n                          ")]) : _vm._e()])]), _vm._v("\n\n                          " + _vm._s(_vm.item.data.description)), _c('br'), _c('br'), _vm._v(" "), (this.$auth.isAuthenticated()) ? _c('span', [(this.favorited) ? _c('span', [_c('button', {
     staticClass: "mdl-button mdl-button--colored mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent",
     on: {
       "click": function($event) {
@@ -247,7 +263,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('i', {
     staticClass: "material-icons"
-  }, [_vm._v("done")]), _vm._v(" Liked\n                            ")])]) : (!this.favorited) ? _c('span', [_c('button', {
+  }, [_vm._v("done")]), _vm._v(" Liked\n                              ")])]) : (!this.favorited) ? _c('span', [_c('button', {
     staticClass: "mdl-button mdl-js-button mdl-js-ripple-effect ",
     on: {
       "click": function($event) {
@@ -256,7 +272,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('i', {
     staticClass: "material-icons"
-  }, [_vm._v("star")]), _vm._v(" Like\n                            ")])]) : _vm._e()]) : _vm._e()])])])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("star")]), _vm._v(" Like\n                              ")])]) : _vm._e()]) : _vm._e()])])])]), _vm._v(" "), _c('div', {
     staticClass: "mdl-layout__tab-panel is-active content-panel",
     attrs: {
       "id": "details"
@@ -290,10 +306,25 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "href": _vm.item.data.website,
       "target": "_blank"
     }
-  }, [_vm._v(_vm._s(_vm.item.data.website))])])])])]), _vm._v(" "), (_vm.item.data.style) ? _c('span', [_c('h4', [_vm._v("Style")]), _vm._v(" "), _c('strong', [_vm._v(_vm._s(_vm.item.data.style.name))]), _c('br'), _c('br'), _vm._v("\n                                  " + _vm._s(_vm.item.data.style.description) + "\n                                ")]) : _vm._e(), _vm._v(" "), (_vm.item.data.available) ? _c('span', [_c('h4', [_vm._v("Availablility")]), _vm._v("\n                                  " + _vm._s(_vm.item.data.available.description) + "\n                                ")]) : _vm._e(), _vm._v(" "), _c('ul')])])])])]) : _vm._e()]), _vm._v(" "), _c('div', {
+  }, [_vm._v(_vm._s(_vm.item.data.website))])])])])]), _vm._v(" "), (_vm.item.data.style) ? _c('span', [_c('h4', [_vm._v("Style")]), _vm._v(" "), _c('strong', [_vm._v(_vm._s(_vm.item.data.style.name))]), _c('br'), _c('br'), _vm._v("\n                                    " + _vm._s(_vm.item.data.style.description) + "\n                                  ")]) : _vm._e(), _vm._v(" "), (_vm.item.data.available) ? _c('span', [_c('h4', [_vm._v("Availablility")]), _vm._v("\n                                    " + _vm._s(_vm.item.data.available.description) + "\n                                  ")]) : _vm._e(), _vm._v(" "), _c('ul')])])])]), _vm._v(" "), _c('h4', [_vm._v("Comments")]), _vm._v(" "), _vm._l((_vm.comments), function(comment) {
+    return _c('div', [_c('md-button', [_vm._v("Default")])], 1)
+  }), _vm._v(" "), _vm._m(0)], 2) : _vm._e()]), _vm._v(" "), _c('div', {
     staticClass: "mdl-layout-spacer"
   })])
-},staticRenderFns: []}
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "mdl-layout__tab-panel is-active content-panel",
+    attrs: {
+      "id": "comments"
+    }
+  }, [_c('section', {
+    staticClass: "section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp"
+  }, [_c('div', {
+    staticClass: "mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--12-col-phone"
+  }, [_c('div', {
+    staticClass: "mdl-card__supporting-text"
+  })])])])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()

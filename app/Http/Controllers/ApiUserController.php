@@ -73,7 +73,19 @@ class ApiUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      if (!Auth::check())
+      {
+          return response()->json(['error' => 'Unauthorized. Must be logged in to do that action!'], 401);
+      }
+      if(Auth::user()->id != $id){
+        return response()->json(['error' => 'Cant update a profile that isnt yours'], 401);
+      }
+
+      $user = User::find(Auth::user()->id);
+      $user->bio =  $request->input('bio');
+      $user->name =  $request->input('name');
+
+      $user->save();
     }
 
     /**

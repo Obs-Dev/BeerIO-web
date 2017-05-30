@@ -1,21 +1,25 @@
 webpackJsonp([1],{
 
-/***/ 55:
+/***/ 185:
 /***/ (function(module, exports, __webpack_require__) {
 
-var Component = __webpack_require__(3)(
+
+/* styles */
+__webpack_require__(203)
+
+var Component = __webpack_require__(5)(
   /* script */
-  __webpack_require__(64),
+  __webpack_require__(193),
   /* template */
-  __webpack_require__(74),
+  __webpack_require__(202),
   /* scopeId */
-  null,
+  "data-v-bdf3b7c8",
   /* cssModules */
   null
 )
-Component.options.__file = "H:\\Development\\Workspace\\beerwebapp\\beerwebapp\\resources\\assets\\js\\components\\Login.vue"
+Component.options.__file = "H:\\Development\\Workspace\\beerwebapp\\beerwebapp\\resources\\assets\\js\\components\\passport\\Clients.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Login.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] Clients.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -24,9 +28,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-42a810e8", Component.options)
+    hotAPI.createRecord("data-v-bdf3b7c8", Component.options)
   } else {
-    hotAPI.reload("data-v-42a810e8", Component.options)
+    hotAPI.reload("data-v-bdf3b7c8", Component.options)
   }
 })()}
 
@@ -35,11 +39,186 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 64:
+/***/ 193:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -83,171 +262,478 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      email: null,
-      password: null,
-      errorMessage: '',
-      loadingLogin: false
-    };
-  },
-  mounted: function mounted() {
+    /*
+     * The component's data.
+     */
+    data: function data() {
+        return {
+            clients: [],
 
-    console.log('Login Component mounted.');
-  },
+            createForm: {
+                errors: [],
+                name: '',
+                redirect: ''
+            },
 
-  methods: {
-    login: function login() {
-      var _this = this;
+            editForm: {
+                errors: [],
+                name: '',
+                redirect: ''
+            }
+        };
+    },
 
-      this.loadingLogin = true;
-      var data = {
-        client_id: "1",
-        client_secret: "WLbnPBVennWVO5kZZEre31kQ0Qb6KzobTtpoplVv",
-        grant_type: "password",
-        username: this.email,
-        password: this.password
-      };
-      this.$http.post("/oauth/token", data).then(function (response) {
-        console.log(response);
-        if (response.status == 200) {
-          console.log("Login Success. Setting Token!!");
-          _this.$auth.setToken(response.body.access_token, response.body.expires_in + Date.now());
-          _this.$router.push('/dashboard');
+
+    /**
+     * Prepare the component.
+     */
+    ready: function ready() {
+        this.getClients();
+
+        $('#modal-create-client').on('shown.bs.modal', function () {
+            $('#create-client-name').focus();
+        });
+
+        $('#modal-edit-client').on('shown.bs.modal', function () {
+            $('#edit-client-name').focus();
+        });
+    },
+
+
+    methods: {
+        /**
+         * Get all of the OAuth clients for the user.
+         */
+        getClients: function getClients() {
+            var _this = this;
+
+            this.$http.get('/oauth/clients').then(function (response) {
+                _this.clients = response.data;
+            });
+        },
+
+
+        /**
+         * Show the form for creating new clients.
+         */
+        showCreateClientForm: function showCreateClientForm() {
+            $('#modal-create-client').modal('show');
+        },
+
+
+        /**
+         * Create a new OAuth client for the user.
+         */
+        store: function store() {
+            this.persistClient('post', '/oauth/clients', this.createForm, '#modal-create-client');
+        },
+
+
+        /**
+         * Edit the given client.
+         */
+        edit: function edit(client) {
+            this.editForm.id = client.id;
+            this.editForm.name = client.name;
+            this.editForm.redirect = client.redirect;
+
+            $('#modal-edit-client').modal('show');
+        },
+
+
+        /**
+         * Update the client being edited.
+         */
+        update: function update() {
+            this.persistClient('put', '/oauth/clients/' + this.editForm.id, this.editForm, '#modal-edit-client');
+        },
+
+
+        /**
+         * Persist the client to storage using the given form.
+         */
+        persistClient: function persistClient(method, uri, form, modal) {
+            var _this2 = this;
+
+            form.errors = [];
+
+            this.$http[method](uri, form).then(function (response) {
+                _this2.getClients();
+
+                form.name = '';
+                form.redirect = '';
+                form.errors = [];
+
+                $(modal).modal('hide');
+            }).catch(function (response) {
+                if (_typeof(response.data) === 'object') {
+                    form.errors = _.flatten(_.toArray(response.data));
+                } else {
+                    form.errors = ['Something went wrong. Please try again.'];
+                }
+            });
+        },
+
+
+        /**
+         * Destroy the given client.
+         */
+        destroy: function destroy(client) {
+            var _this3 = this;
+
+            this.$http.delete('/oauth/clients/' + client.id).then(function (response) {
+                _this3.getClients();
+            });
         }
-        _this.loadingLogin = false;
-      }, function (response) {
-        var message = "";
-        if (response.body.hint) message = response.body.hint;else message = response.body.message;
-
-        _this.errorMessage = message;
-        _this.loadingLogin = false;
-      });
     }
-  }
 });
 
 /***/ }),
 
-/***/ 74:
+/***/ 194:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(6)();
+exports.push([module.i, "\n.action-link[data-v-bdf3b7c8] {\n    cursor: pointer;\n}\n.m-b-none[data-v-bdf3b7c8] {\n    margin-bottom: 0;\n}\n", ""]);
+
+/***/ }),
+
+/***/ 202:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "login"
+  return _c('div', [_c('div', {
+    staticClass: "panel panel-default"
   }, [_c('div', {
-    staticClass: "mdl-grid"
+    staticClass: "panel-heading"
   }, [_c('div', {
-    staticClass: "mdl-layout-spacer"
-  }), _vm._v(" "), _c('div', {
-    staticClass: "mdl-cell mdl-cell--4-col"
-  }, [_c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.loadingLogin),
-      expression: "loadingLogin"
-    }],
-    staticClass: "mdl-spinner mdl-js-spinner is-active"
-  }), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (!_vm.loadingLogin),
-      expression: "!loadingLogin"
-    }],
-    staticClass: "mdl-layout mdl-js-layout mdl-color--grey-100"
-  }, [_c('main', {
-    staticClass: "mdl-layout__content"
-  }, [_c('div', {
-    staticClass: "mdl-card mdl-shadow--6dp"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "mdl-card__supporting-text"
-  }, [(_vm.errorMessage) ? _c('span', [_c('p', {
-    staticClass: "warning-label"
-  }, [_vm._v(_vm._s(_vm.errorMessage))])]) : _vm._e(), _vm._v(" "), _c('form', {
+    staticStyle: {
+      "display": "flex",
+      "justify-content": "space-between",
+      "align-items": "center"
+    }
+  }, [_c('span', [_vm._v("\n                    OAuth Clients\n                ")]), _vm._v(" "), _c('a', {
+    staticClass: "action-link",
+    on: {
+      "click": _vm.showCreateClientForm
+    }
+  }, [_vm._v("\n                    Create New Client\n                ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-body"
+  }, [(_vm.clients.length === 0) ? _c('p', {
+    staticClass: "m-b-none"
+  }, [_vm._v("\n                You have not created any OAuth clients.\n            ")]) : _vm._e(), _vm._v(" "), (_vm.clients.length > 0) ? _c('table', {
+    staticClass: "table table-borderless m-b-none"
+  }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.clients), function(client) {
+    return _c('tr', [_c('td', {
+      staticStyle: {
+        "vertical-align": "middle"
+      }
+    }, [_vm._v("\n                            " + _vm._s(client.id) + "\n                        ")]), _vm._v(" "), _c('td', {
+      staticStyle: {
+        "vertical-align": "middle"
+      }
+    }, [_vm._v("\n                            " + _vm._s(client.name) + "\n                        ")]), _vm._v(" "), _c('td', {
+      staticStyle: {
+        "vertical-align": "middle"
+      }
+    }, [_c('code', [_vm._v(_vm._s(client.secret))])]), _vm._v(" "), _c('td', {
+      staticStyle: {
+        "vertical-align": "middle"
+      }
+    }, [_c('a', {
+      staticClass: "action-link",
+      on: {
+        "click": function($event) {
+          _vm.edit(client)
+        }
+      }
+    }, [_vm._v("\n                                Edit\n                            ")])]), _vm._v(" "), _c('td', {
+      staticStyle: {
+        "vertical-align": "middle"
+      }
+    }, [_c('a', {
+      staticClass: "action-link text-danger",
+      on: {
+        "click": function($event) {
+          _vm.destroy(client)
+        }
+      }
+    }, [_vm._v("\n                                Delete\n                            ")])])])
+  }))]) : _vm._e()])]), _vm._v(" "), _c('div', {
+    staticClass: "modal fade",
     attrs: {
-      "action": "#"
+      "id": "modal-create-client",
+      "tabindex": "-1",
+      "role": "dialog"
     }
   }, [_c('div', {
-    staticClass: "mdl-textfield mdl-js-textfield"
+    staticClass: "modal-dialog"
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "modal-body"
+  }, [(_vm.createForm.errors.length > 0) ? _c('div', {
+    staticClass: "alert alert-danger"
+  }, [_vm._m(2), _vm._v(" "), _c('br'), _vm._v(" "), _c('ul', _vm._l((_vm.createForm.errors), function(error) {
+    return _c('li', [_vm._v("\n                                " + _vm._s(error) + "\n                            ")])
+  }))]) : _vm._e(), _vm._v(" "), _c('form', {
+    staticClass: "form-horizontal",
+    attrs: {
+      "role": "form"
+    }
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "col-md-3 control-label"
+  }, [_vm._v("Name")]), _vm._v(" "), _c('div', {
+    staticClass: "col-md-7"
   }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.email),
-      expression: "email"
+      value: (_vm.createForm.name),
+      expression: "createForm.name"
     }],
-    staticClass: "mdl-textfield__input",
+    staticClass: "form-control",
+    attrs: {
+      "id": "create-client-name",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.createForm.name)
+    },
+    on: {
+      "keyup": function($event) {
+        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13)) { return null; }
+        _vm.store($event)
+      },
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.createForm.name = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('span', {
+    staticClass: "help-block"
+  }, [_vm._v("\n                                    Something your users will recognize and trust.\n                                ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "col-md-3 control-label"
+  }, [_vm._v("Redirect URL")]), _vm._v(" "), _c('div', {
+    staticClass: "col-md-7"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.createForm.redirect),
+      expression: "createForm.redirect"
+    }],
+    staticClass: "form-control",
     attrs: {
       "type": "text",
-      "id": "email"
+      "name": "redirect"
     },
     domProps: {
-      "value": (_vm.email)
+      "value": (_vm.createForm.redirect)
     },
     on: {
+      "keyup": function($event) {
+        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13)) { return null; }
+        _vm.store($event)
+      },
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.email = $event.target.value
+        _vm.createForm.redirect = $event.target.value
       }
     }
-  }), _vm._v(" "), _c('label', {
-    staticClass: "mdl-textfield__label",
+  }), _vm._v(" "), _c('span', {
+    staticClass: "help-block"
+  }, [_vm._v("\n                                    Your application's authorization callback URL.\n                                ")])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer"
+  }, [_c('button', {
+    staticClass: "btn btn-default",
     attrs: {
-      "for": "email"
+      "type": "button",
+      "data-dismiss": "modal"
     }
-  }, [_vm._v("Email")])]), _vm._v(" "), _c('div', {
-    staticClass: "mdl-textfield mdl-js-textfield"
+  }, [_vm._v("Close")]), _vm._v(" "), _c('button', {
+    staticClass: "btn btn-primary",
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": _vm.store
+    }
+  }, [_vm._v("\n                        Create\n                    ")])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal fade",
+    attrs: {
+      "id": "modal-edit-client",
+      "tabindex": "-1",
+      "role": "dialog"
+    }
+  }, [_c('div', {
+    staticClass: "modal-dialog"
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(3), _vm._v(" "), _c('div', {
+    staticClass: "modal-body"
+  }, [(_vm.editForm.errors.length > 0) ? _c('div', {
+    staticClass: "alert alert-danger"
+  }, [_vm._m(4), _vm._v(" "), _c('br'), _vm._v(" "), _c('ul', _vm._l((_vm.editForm.errors), function(error) {
+    return _c('li', [_vm._v("\n                                " + _vm._s(error) + "\n                            ")])
+  }))]) : _vm._e(), _vm._v(" "), _c('form', {
+    staticClass: "form-horizontal",
+    attrs: {
+      "role": "form"
+    }
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "col-md-3 control-label"
+  }, [_vm._v("Name")]), _vm._v(" "), _c('div', {
+    staticClass: "col-md-7"
   }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.password),
-      expression: "password"
+      value: (_vm.editForm.name),
+      expression: "editForm.name"
     }],
-    staticClass: "mdl-textfield__input",
+    staticClass: "form-control",
     attrs: {
-      "type": "password",
-      "id": "userpass"
+      "id": "edit-client-name",
+      "type": "text"
     },
     domProps: {
-      "value": (_vm.password)
+      "value": (_vm.editForm.name)
     },
     on: {
+      "keyup": function($event) {
+        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13)) { return null; }
+        _vm.update($event)
+      },
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.password = $event.target.value
+        _vm.editForm.name = $event.target.value
       }
     }
-  }), _vm._v(" "), _c('label', {
-    staticClass: "mdl-textfield__label",
+  }), _vm._v(" "), _c('span', {
+    staticClass: "help-block"
+  }, [_vm._v("\n                                    Something your users will recognize and trust.\n                                ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "col-md-3 control-label"
+  }, [_vm._v("Redirect URL")]), _vm._v(" "), _c('div', {
+    staticClass: "col-md-7"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editForm.redirect),
+      expression: "editForm.redirect"
+    }],
+    staticClass: "form-control",
     attrs: {
-      "for": "userpass"
-    }
-  }, [_vm._v("Password")])])])]), _vm._v(" "), _c('div', {
-    staticClass: "mdl-card__actions mdl-card--border"
-  }, [_c('button', {
-    staticClass: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect",
+      "type": "text",
+      "name": "redirect"
+    },
+    domProps: {
+      "value": (_vm.editForm.redirect)
+    },
     on: {
-      "click": _vm.login
+      "keyup": function($event) {
+        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13)) { return null; }
+        _vm.update($event)
+      },
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editForm.redirect = $event.target.value
+      }
     }
-  }, [_vm._v("Sign In ")])])])])])]), _vm._v(" "), _c('div', {
-    staticClass: "mdl-layout-spacer"
-  })])])
+  }), _vm._v(" "), _c('span', {
+    staticClass: "help-block"
+  }, [_vm._v("\n                                    Your application's authorization callback URL.\n                                ")])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer"
+  }, [_c('button', {
+    staticClass: "btn btn-default",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal"
+    }
+  }, [_vm._v("Close")]), _vm._v(" "), _c('button', {
+    staticClass: "btn btn-primary",
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": _vm.update
+    }
+  }, [_vm._v("\n                        Save Changes\n                    ")])])])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('thead', [_c('th', [_vm._v("Client ID")]), _vm._v(" "), _c('th', [_vm._v("Name")]), _vm._v(" "), _c('th', [_vm._v("Secret")]), _vm._v(" "), _c('th'), _vm._v(" "), _c('th')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "mdl-card__title mdl-color--secondary mdl-color-text--grey"
-  }, [_c('h2', {
-    staticClass: "mdl-card__title-text"
-  }, [_vm._v("Login")])])
+    staticClass: "modal-header"
+  }, [_c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button ",
+      "data-dismiss": "modal",
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")]), _vm._v(" "), _c('h4', {
+    staticClass: "modal-title"
+  }, [_vm._v("\n                        Create Client\n                    ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('p', [_c('strong', [_vm._v("Whoops!")]), _vm._v(" Something went wrong!")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal-header"
+  }, [_c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button ",
+      "data-dismiss": "modal",
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")]), _vm._v(" "), _c('h4', {
+    staticClass: "modal-title"
+  }, [_vm._v("\n                        Edit Client\n                    ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('p', [_c('strong', [_vm._v("Whoops!")]), _vm._v(" Something went wrong!")])
 }]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-42a810e8", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-bdf3b7c8", module.exports)
   }
+}
+
+/***/ }),
+
+/***/ 203:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(194);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(134)("4d00b9e5", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-bdf3b7c8\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Clients.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-bdf3b7c8\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Clients.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
 }
 
 /***/ })

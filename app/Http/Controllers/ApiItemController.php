@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use App\Models\Comment;
+use App\Models\User;
+use App\Models\ItemEvent;
+use Auth;
 class ApiItemController extends Controller
 {
     /**
@@ -61,6 +65,43 @@ class ApiItemController extends Controller
       }catch(Exception $ex){
         return "there was an error";
       }
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showComments($id)
+    {
+      $comment = Comment::with('user')->where('item_id', $id);
+      return response()->json(['data' => $comment->orderBy('created_at', 'desc')->get()], 200);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function addComment(Request $request)
+    {
+      if (!Auth::check())
+      {
+          return response()->json(['error' => 'Unauthorized. Must be logged in to do that action!'], 401);
+      }
+      $itemId = $request->input('itemId');
+      $description = $request->input('description');
+      $comment = new Comment(['item_id' => $itemId, 'description' => $description]);
+
+      $user = User::find(Auth::user()->id);
+      $eventMetaData = array('message' => "commented on ".$itemId, 'item_id' => $itemId, 'comment' => $description, 'timestamp' => time());
+      $event = new ItemEvent(['item_id' => $itemId, 'meta_data' => json_encode($eventMetaData), 'action' => 'COMMENT']);
+
+      //save the comment and the event.
+      $user->comments()->save($comment);
+      $user->itemEvents()->save($event);
     }
 
     /**

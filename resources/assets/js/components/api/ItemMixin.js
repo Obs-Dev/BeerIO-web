@@ -1,7 +1,7 @@
 export default {
 
     mounted() {
-        console.log('Item Mixin mounted.');
+
     },
     methods: {
         handleFavorite: function(itemId, type) {
@@ -96,13 +96,15 @@ export default {
                 this.loadingDetailList = true;
                 this.favorites = response.body.data;
                 this.favorites.forEach(function(favorite) {
-
-                  this.$http.get('/api/v1/item/' + favorite.item_id + '/type/' + favorite.type)
+                  var link = '/api/v1/item/' + favorite.item_id + '/type/' + favorite.type
+                  this.$http.get(link)
                       .then((response) => {
                           this.loadingDetailList = true;
                           console.log("Favorites with detail:");
                           var favoriteItem = response.data.data;
                           favoriteItem.favorited = favorite.created_at;
+                          favoriteItem.type = favorite.type;
+                          favoriteItem.link = link;
                           console.log(favoriteItem);
                           this.detailList.push(response.data);
                           this.loadingDetailList = false;
@@ -132,6 +134,40 @@ export default {
 
               }).catch(function(error){
 
+              });
+
+        },
+
+        fetchComments: function(id) {
+
+          this.$http.get('/api/v1/item/' + id + '/comments')
+              .then(function(response){
+                  console.log("loading comments");
+                  this.comments = response.body.data;
+
+              }).catch(function(error){
+                this.$notifier.notify("Couldn't load comments");
+              });
+
+        },
+
+        addComment: function(id) {
+          console.log(this.newComment);
+          if(this.newComment == ""){
+            this.$notifier.notify("Please add a comment");
+            return;
+          }
+          var body = {
+            itemId:id,
+            description: this.newComment
+          }
+          this.$http.post('/api/v1/item/' + id + '/comments',body)
+              .then(function(response){
+                  this.fetchComments(id);
+                  this.newComment = "";
+                  this.$notifier.notify("Comment Added!");
+              }).catch(function(error){
+                this.$notifier.notify("Couldn't add comment");
               });
 
         },

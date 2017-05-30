@@ -1,42 +1,38 @@
 <template>
-    <div class="login">
-
-      <div class="mdl-grid">
-          <div class="mdl-layout-spacer"></div>
-          <div class="mdl-cell mdl-cell--4-col">
-            <div v-show="loadingLogin" class="mdl-spinner mdl-js-spinner is-active"></div>
-            <div v-show="!loadingLogin" class="mdl-layout mdl-js-layout mdl-color--grey-100">
-            	<main class="mdl-layout__content">
-            		<div class="mdl-card mdl-shadow--6dp">
-            			<div class="mdl-card__title mdl-color--secondary mdl-color-text--grey">
-            				<h2 class="mdl-card__title-text">Login</h2>
-            			</div>
-            	  	<div class="mdl-card__supporting-text">
-                    <span v-if="errorMessage">
+    <md-layout>
+      <md-layout md-flex="30"></md-layout>
+      <md-layout md-tag="form" novalidate @submit.stop.prevent="submit" md-align="center">
+        <span v-if="errorMessage">
                       <p class="warning-label">{{errorMessage}}</p>
                     </span>
-            				<form action="#">
-            					<div class="mdl-textfield mdl-js-textfield">
-            						<input class="mdl-textfield__input" type="text" id="email" v-model="email" />
-            						<label class="mdl-textfield__label" for="email">Email</label>
-            					</div>
-            					<div class="mdl-textfield mdl-js-textfield">
-            						<input class="mdl-textfield__input" type="password" id="userpass" v-model="password" />
-            						<label class="mdl-textfield__label" for="userpass">Password</label>
-            					</div>
-            				</form>
-            			</div>
-            			<div class="mdl-card__actions mdl-card--border">
-            				<button @click="login" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Sign In </button>
-            			</div>
-            		</div>
-            	</main>
-            </div>
-          </div>
-          <div class="mdl-layout-spacer"></div>
-      </div>
+          <md-layout md-tag="md-card" md-column >
 
-    </div>
+            <md-card-header>
+              <div class="md-title">Login</div>
+            </md-card-header>
+
+            <md-card-content>
+              <md-input-container>
+                <md-icon>person</md-icon>
+                <label>Email</label>
+                <md-input email required v-model="email" />
+              </md-input-container>
+
+              <md-input-container md-has-password>
+                <md-icon>lock</md-icon>
+                <label>Password</label>
+                <md-input type="password" required v-model="password" />
+              </md-input-container>
+            </md-card-content>
+
+            <md-card-actions>
+              <md-button v-show="!loadingLogin" type="button" @click.native="login">Login</md-button>
+            </md-card-actions>
+          </md-layout>
+        </md-layout>
+    <md-layout md-flex="30"></md-layout>
+</md-layout>
+
 </template>
 
     <script>

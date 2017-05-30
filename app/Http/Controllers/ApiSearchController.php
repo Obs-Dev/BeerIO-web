@@ -20,7 +20,7 @@ class ApiSearchController extends Controller
         $type = $request->input('type');
 
         if($type!=null)
-          $res = $client->request('GET', 'http://api.brewerydb.com/v2/search?key='.$key.'&q='.$q.'type='.$type, []);
+          $res = $client->request('GET', 'http://api.brewerydb.com/v2/search?key='.$key.'&q='.$q.'&type='.$type, []);
         else
           $res = $client->request('GET', 'http://api.brewerydb.com/v2/search?key='.$key.'&q='.$q, []);
         return $res->getBody();

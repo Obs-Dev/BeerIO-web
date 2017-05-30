@@ -2,75 +2,87 @@
 
     <div id="app">
 
+          <div class="phone-viewport">
 
-        <!-- Always shows a header, even in smaller screens. -->
-        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-          <header class="mdl-layout__header">
-            <div class="mdl-layout__header-row">
-              <!-- Title -->
-              <span class="mdl-layout-title">BeerIO</span>
-              <!-- Add spacer, to align navigation to the right -->
-              <div class="mdl-layout-spacer"></div>
-              <!-- Navigation. We hide it in small screens. -->
-              <nav class="mdl-navigation mdl-layout--large-screen-only">
-                <a class="mdl-navigation__link" href="">Dashboard</a>
-                <a class="mdl-navigation__link" href="">Friends</a>
-                <router-link to="/items" class="mdl-navigation__link">Brews</router-link>
-                <a class="mdl-navigation__link" href="/beer">Discover</a>
-                <a class="mdl-navigation__link" href="">About</a>
-                <span v-if="this.$auth.isAuthenticated()">
+            <md-toolbar>
+              <md-button class="md-icon-button" @click.native="toggleLeftSidenav">
+                <md-icon>menu</md-icon>
+              </md-button>
 
-                    <router-link to="/auth/logout" class="mdl-navigation__link">Logout</router-link>
-                </span>
-                <span v-else>
-                    <router-link to="/auth/login" class="mdl-navigation__link">Login</router-link>
-                </span>
-              </nav>
-            </div>
-          </header>
-          <div class="mdl-layout__drawer">
-            <span class="mdl-layout-title">Test</span>
-            <nav class="mdl-navigation">
-              <a class="mdl-navigation__link" href="">Dashboard</a>
-              <!--<router-link to="/" class="mdl-navigation__link">Test</router-link>-->
-              <a class="mdl-navigation__link" href="">Friends</a>
-              <router-link to="/items" class="mdl-navigation__link">Brews</router-link>
-              <a class="mdl-navigation__link" href="/beer">Discover</a>
-              <a class="mdl-navigation__link" href="">About</a>
-              <span v-if="this.$auth.isAuthenticated()">
-                  <router-link to="/auth/logout" class="mdl-navigation__link">Logout</router-link>
-              </span>
-              <span v-else>
-                  <router-link to="/auth/login" class="mdl-navigation__link">Login</router-link>
-              </span>
-            </nav>
+              <h2 class="md-title">BeerIO</h2>
+            </md-toolbar>
+
+
+            <md-sidenav class="md-left" ref="leftSidenav" @open="open('Left')" @close="close('Left')">
+              <md-toolbar class="md-account-header">
+                    <md-list class="md-transparent">
+                      <md-list-item class="md-avatar-list">
+                        <md-avatar class="md-large">
+                          <img src="https://placeimg.com/64/64/people/8" alt="People">
+                        </md-avatar>
+
+                        <span style="flex: 1"></span>
+
+                      </md-list-item>
+
+                      <md-list-item>
+                        <div v-show="this.$auth.isAuthenticated()" class="md-list-text-container">
+                          <span>Ryan Kazokas</span>
+                          <span>ryan.kazokas@gmail.com</span>
+                        </div>
+                        <div v-show="!this.$auth.isAuthenticated()" class="md-list-text-container">
+                          <span>Not Logged In</span>
+                          <router-link to="/auth/login" class="mdl-navigation__link">Login</router-link>
+                        </div>
+
+                        <md-button class="md-icon-button md-list-action">
+                          <md-icon>arrow_drop_down</md-icon>
+                        </md-button>
+                      </md-list-item>
+                    </md-list>
+                  </md-toolbar>
+
+                  <md-list>
+                    <md-list-item @click.native="$refs.sidenav.toggle()" class="md-primary">
+                      <md-icon>insert_drive_file</md-icon> <span>My files</span>
+                    </md-list-item>
+
+                    <md-list-item @click.native="$refs.sidenav.toggle()">
+                      <md-icon>people</md-icon> <span>Shared with me</span>
+                    </md-list-item>
+
+                    <md-list-item @click.native="$refs.sidenav.toggle()">
+                      <md-icon>access_time</md-icon> <span>Recent</span>
+                    </md-list-item>
+
+                    <md-list-item @click.native="$refs.sidenav.toggle()">
+                      <md-icon>start</md-icon> <span>Starred</span>
+                    </md-list-item>
+
+                    <md-list-item @click.native="$refs.sidenav.toggle()">
+                      <md-icon>delete</md-icon> <span>Trash</span>
+                    </md-list-item>
+                  </md-list>
+            </md-sidenav>
+
+
+
+                                                </div>
+
+                                                            <md-layout md-gutter  md-column md-align="center">
+
+                                                                <notification></notification>
+
+                                                                <router-view class="view"></router-view>
+
+
+                                                            </md-layout>
           </div>
-
-          <main class="mdl-layout__content">
-            <notification></notification>
-            <!--<div class="page-content">@yield('content')</div>-->
-            <router-view class="view"></router-view>
-
-          </main>
-          <footer class="mdl-mini-footer">
-            <div class="mdl-mini-footer__left-section">
-              <div class="mdl-logo">BeerIO</div>
-              <ul class="mdl-mini-footer__link-list">
-                <li><a href="#">Help</a></li>
-                <li><a href="#">Privacy & Terms</a></li>
-              </ul>
-            </div>
-          </footer>
-
-
-        </div>
-
-
 
       </div>
 
 
-</div>
+
 </template>
 <script>
 export default {
@@ -81,8 +93,26 @@ export default {
         this.$auth.setToken(response.body.access_token, response.body.expires_in + Date.now())
         this.$router.push('/auth/login')
 
+      },
+      toggleLeftSidenav() {
+      this.$refs.leftSidenav.toggle();
+      },
+      toggleRightSidenav() {
+        this.$refs.rightSidenav.toggle();
+      },
+      closeRightSidenav() {
+        this.$refs.rightSidenav.close();
+      },
+      open(ref) {
+        console.log('Opened: ' + ref);
+      },
+      close(ref) {
+        console.log('Closed: ' + ref);
       }
 
     }
 }
 </script>
+<style>
+
+</style>

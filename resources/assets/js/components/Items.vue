@@ -5,6 +5,7 @@
         <div class="mdl-cell mdl-cell--3-col">
           <h4>Criteria</h4>
           <h5>Types</h5>
+
           <label class="mdl-checkbox mdl-js-checkbox" for="beer">
             <input v-model="types" type="checkbox" id="beer" class="mdl-checkbox__input" value="beer" checked>
             <span class="mdl-checkbox__label">Beer</span>
@@ -23,14 +24,20 @@
       </label>
 
         </div>
+
         <div class="mdl-cell mdl-cell--9-col">
         <h4>Search Items</h4>
+
         <form @submit="search">
 
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <md-input-container md-inline>
+              <label>Search</label>
+              <md-input v-model="term"></md-input>
+            </md-input-container>
+          <!--<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             <input class="mdl-textfield__input" type="text" v-model="term" id="search-text"/>
             <label class="mdl-textfield__label" for="search-text">Search:</label>
-          </div>
+          </div>-->
         </form>
 
         <ul class = "list-group">

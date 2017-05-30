@@ -1,13 +1,13 @@
 webpackJsonp([0],{
 
-/***/ 15:
+/***/ 133:
 /***/ (function(module, exports, __webpack_require__) {
 
-var Component = __webpack_require__(3)(
+var Component = __webpack_require__(5)(
   /* script */
-  __webpack_require__(63),
+  __webpack_require__(188),
   /* template */
-  __webpack_require__(72),
+  __webpack_require__(197),
   /* scopeId */
   null,
   /* cssModules */
@@ -35,11 +35,18 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 63:
+/***/ 188:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -182,7 +189,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 72:
+/***/ 197:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -366,35 +373,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "submit": _vm.search
     }
-  }, [_c('div', {
-    staticClass: "mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
+  }, [_c('md-input-container', {
+    attrs: {
+      "md-inline": ""
+    }
+  }, [_c('label', [_vm._v("Search")]), _vm._v(" "), _c('md-input', {
+    model: {
       value: (_vm.term),
+      callback: function($$v) {
+        _vm.term = $$v
+      },
       expression: "term"
-    }],
-    staticClass: "mdl-textfield__input",
-    attrs: {
-      "type": "text",
-      "id": "search-text"
-    },
-    domProps: {
-      "value": (_vm.term)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.term = $event.target.value
-      }
     }
-  }), _vm._v(" "), _c('label', {
-    staticClass: "mdl-textfield__label",
-    attrs: {
-      "for": "search-text"
-    }
-  }, [_vm._v("Search:")])])]), _vm._v(" "), _c('ul', {
+  })], 1)], 1), _vm._v(" "), _c('ul', {
     staticClass: "list-group"
   }, [(_vm.loadingList) ? _c('span', [_c('div', {
     staticClass: "mdl-spinner mdl-js-spinner is-active"

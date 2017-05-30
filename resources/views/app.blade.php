@@ -1,69 +1,33 @@
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
 <head>
-    @include('partial.head')
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+
+  <title>{{ config('app.name', 'Laravel') }}</title>
+
+  <!-- Styles -->
+  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+  <!-- Scripts -->
+  <script>
+      window.Laravel = {!! json_encode([
+          'csrfToken' => csrf_token(),
+      ]) !!};
+  </script>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
 </head>
 <body>
 
-    <div id="app">
-
-
-        <!-- Always shows a header, even in smaller screens. -->
-        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-          <header class="mdl-layout__header">
-            <div class="mdl-layout__header-row">
-              <!-- Title -->
-              <span class="mdl-layout-title">{{ config('app.name', 'Laravel') }}</span>
-              <!-- Add spacer, to align navigation to the right -->
-              <div class="mdl-layout-spacer"></div>
-              <!-- Navigation. We hide it in small screens. -->
-              <nav class="mdl-navigation mdl-layout--large-screen-only">
-                <a class="mdl-navigation__link" href="">Dashboard2</a>
-                <a class="mdl-navigation__link" href="">Friends</a>
-                <router-link to="/items" class="mdl-navigation__link">Brews</router-link>
-                <a class="mdl-navigation__link" href="/beer">Discover</a>
-                <a class="mdl-navigation__link" href="">About</a>
-                @if (Auth::check())
-                          <a class="mdl-navigation__link" href="{{ url('/home') }}">{{ Auth::user()->email }}</a>
-                      @else
-                          <a class="mdl-navigation__link" href="{{ url('/login') }}">Login</a>
-                          <a class="mdl-navigation__link" href="{{ url('/register') }}">Register</a>
-                      @endif
-              </nav>
-            </div>
-          </header>
-          <div class="mdl-layout__drawer">
-            <span class="mdl-layout-title">{{ config('app.name', 'Laravel') }}</span>
-            <nav class="mdl-navigation">
-              <a class="mdl-navigation__link" href="">Dashboard</a>
-              <!--<router-link to="/" class="mdl-navigation__link">Test</router-link>-->
-              <a class="mdl-navigation__link" href="">Friends</a>
-              <router-link to="/items" class="mdl-navigation__link">Brews</router-link>
-              <a class="mdl-navigation__link" href="/beer">Discover</a>
-              <a class="mdl-navigation__link" href="">About</a>
-              @if (Auth::check())
-                        <a class="mdl-navigation__link" href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a class="mdl-navigation__link" href="{{ url('/login') }}">Login</a>
-                        <a class="mdl-navigation__link" href="{{ url('/register') }}">Register</a>
-                    @endif
-            </nav>
-          </div>
-
-          <main class="mdl-layout__content">
-test
-            <!--<div class="page-content">@yield('content')</div>-->
-            <router-view class="view"></router-view>
-
-          </main>
-
-          @include('partial.footer')
-
-        </div>
-
-
-
-      </div>
+    <div id="app"></div>
 
 
 </div>

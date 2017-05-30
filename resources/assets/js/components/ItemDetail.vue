@@ -1,6 +1,9 @@
 <template>
 
+
   <div class="mdl-grid">
+
+
     <div class="mdl-layout-spacer"></div>
 
       <div class="mdl-cell mdl-cell--8-col content mdl-color-text--grey-800">
@@ -114,6 +117,51 @@
                               </div>
                             </section>
                           </div>
+                          <h4>Comments</h4>
+
+                              <md-input-container>
+                                <label>New Comment</label>
+                                <md-textarea v-model="newComment" maxlength="120"></md-textarea>
+                              </md-input-container>
+                              <md-button @click.native="addComment(item.data.id)" class="md-raised md-primary">
+                                <md-icon>add</md-icon>  Add Comment
+                              </md-button>
+
+
+
+                          <div v-for="comment in comments">
+                            <div class="phone-viewport">
+                              <md-list class="custom-list md-triple-line">
+                                <md-list-item>
+                                  <md-avatar>
+                                    <span v-if="comment.user.image">
+                                      <img :src="comment.user.image" :alt="comment.user.name">
+                                    </span>
+                                    <span v-else>
+                                      <img src="http://smtp.icimod.org/girc/dmis/img/user-avatar-placeholder.png" :alt="comment.user.name">
+                                    </span>
+                                    <md-tooltip md-direction="top">{{comment.user.name}}</md-tooltip>
+                                  </md-avatar>
+
+                                  <div class="md-list-text-container">
+                                    <span>{{comment.user.name}} - <small>{{comment.created_at}}</small></span>
+                                    <p>{{comment.description}}</p>
+                                  </div>
+
+                                  <!--<md-button class="md-icon-button md-list-action">
+                                    <md-icon class="md-primary">star</md-icon>
+                                  </md-button>-->
+
+                                  <md-divider class="md-inset"></md-divider>
+                                </md-list-item>
+
+
+                              </md-list>
+
+
+
+                            </div>
+                          </div>
 
         </span>
 
@@ -134,7 +182,9 @@
                 loadingDetail:true,
                 isAuthenticated: false,
                 favorited: false,
-                message: 'item detail'
+                message: 'item detail',
+                comments: [],
+                newComment: ""
             };
         },
         created(){
@@ -146,7 +196,7 @@
             this.fetchItemDetail(this.$route.params.id, this.$route.params.type);
             this.isAuthenticated = this.$auth.isAuthenticated();
             this.fetchFavorite(this.$route.params.id);
-
+            this.fetchComments(this.$route.params.id);
 
 
         }

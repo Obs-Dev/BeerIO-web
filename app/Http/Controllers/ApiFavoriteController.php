@@ -7,6 +7,7 @@ use GuzzleHttp\Client;
 use Auth;
 use App\Models\User;
 use App\Models\Favorite;
+use App\Models\ItemEvent;
 class ApiFavoriteController extends Controller
 {
     /**
@@ -49,7 +50,10 @@ class ApiFavoriteController extends Controller
       $favorite = new Favorite(['item_id' => $itemId, 'type' => $type]);
 
       $user = User::find(Auth::user()->id);
+      $eventMetaData = array('message' => "favorited ".$itemId, 'item_id' => $itemId, 'type' => $type, 'timestamp' => time());
+      $event = new ItemEvent(['item_id' => $itemId, 'meta_data' => json_encode($eventMetaData), 'action' => 'FAVORITE']);
 
+      $user->itemEvents()->save($event);
       $user->favorites()->save($favorite);
     }
 

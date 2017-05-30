@@ -1,7 +1,6 @@
 export default {
 
     mounted() {
-        console.log('User Mixin mounted.');
     },
     methods: {
         fetchUser: function(id) {
@@ -17,6 +16,26 @@ export default {
                 .catch((error) => {
                     console.log(error);
                     this.loadingDetail=false
+                });
+
+        },
+
+        updateUser: function(user) {
+            this.loadingDetail=true;
+            var url = "/api/v1/user/" + user.id;
+
+            this.$http.put(url,user)
+                .then((response) => {
+                    //console.log(response.data.data);
+                    //this.fetchUser();
+                    this.$notifier.notify("Profile Saved!");
+                    this.loadingDetail=false
+                })
+                .catch((error) => {
+                    console.log(error);
+                    this.updateUserError =true;
+                    this.loadingDetail=false
+                    this.$notifier.notify("Couldn't update user data");
                 });
 
         }
