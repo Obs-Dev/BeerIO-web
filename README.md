@@ -8,8 +8,8 @@ This is the web app version of the beerIO application.
 
 ### Dependencies ###
 - [GIT](https://git-scm.com/download/)
-
 - [Docker and Docker-Compose](https://docs.docker.com/engine/installation/)
+- [NPM](https://docs.docker.com/engine/installation/)
 
 ### How do I get set up? ###
 
@@ -17,16 +17,34 @@ This is the web app version of the beerIO application.
 
 ```
 #!php
-git clone https://Carbondesigndevelopment@bitbucket.org/carbondesignanddevelopment/beerio-web2.git
+$ git clone https://Carbondesigndevelopment@bitbucket.org/carbondesignanddevelopment/beerio-web2.git
 ```
 
 - Run docker: 
 
 ```
 #!php
-docker-compose up -d
+$ docker-compose up  mysql apache2
 ```
-- Visit http://localhost:8080/
+
+- For javascript(Vue): 
+
+```
+#!javascript
+$ npm run watch
+```
+
+- Run and seed migrations in the laradock folder via bash inside the workspace
+
+
+```
+#!php
+$ cd laradock
+$ docker-compose exec workspace bash
+```
+
+
+- Visit http://localhost/
 
 ### Contribution guidelines ###
 
