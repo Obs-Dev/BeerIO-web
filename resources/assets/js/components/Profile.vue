@@ -4,8 +4,10 @@
     <div class="mdl-layout-spacer"></div>
 
       <div class="mdl-cell mdl-cell--8-col content mdl-color-text--grey-800">
-          <md-button v-show="!isEditing" @click.native="editProfile()"class="md-primary"><md-icon>edit</md-icon> Edit Profile</md-button>
-          <md-button v-show="isEditing" @click.native="saveProfile()"class="md-primary"><md-icon>save</md-icon> Save Profile</md-button>
+          <div v-show="editable">
+            <md-button v-show="!isEditing" @click.native="editProfile()"class="md-primary"><md-icon>edit</md-icon> Edit Profile</md-button>
+            <md-button v-show="isEditing" @click.native="saveProfile()"class="md-primary"><md-icon>save</md-icon> Save Profile</md-button>
+          </div>
           <div v-show="loadingDetail" class="mdl-spinner mdl-js-spinner is-active"></div>
           <div class="mdl-cell mdl-cell--8-col content mdl-color-text--grey-800">
             <div class="mdl-grid">
@@ -85,6 +87,7 @@
                 detailList: [],
                 loadingDetailList: false,
                 isEditing: false,
+                editable: false,
                 updateUserError: false
             };
         },
@@ -95,7 +98,14 @@
 
             console.log('Account Component mounted.');
             this.loadingDetail = false;
-            this.fetchUser();
+
+            if(this.$route.params.id){
+              this.fetchUser(this.$route.params.id);
+            }else{
+
+              this.fetchUser();
+            }
+
             this.fetchFavorites();
 
         },

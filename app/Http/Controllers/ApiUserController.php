@@ -16,8 +16,29 @@ class ApiUserController extends Controller
      */
     public function index(Request $request)
     {
+
+      if (!Auth::check())
+      {
+          return response()->json(['error' => 'Unauthorized. Must be logged in to do that action!'], 401);
+      }
       $user = User::find(Auth::user()->id);
       return response()->json(['data' => $user], 200);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+
+      $q = $request->input('q');
+
+      $results = User::where('name', 'LIKE', '%'.$q.'%')->orWhere('email', 'LIKE', '%'.$q.'%')->get();
+      return response()->json(['data' => $results], 200);
+
+
     }
 
     /**

@@ -195,10 +195,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "items"
-  }, [_c('div', {
-    staticClass: "mdl-grid"
-  }, [_c('div', {
-    staticClass: "mdl-cell mdl-cell--3-col"
+  }, [_c('div', [_c('div', {
+    staticClass: "col-md-3"
   }, [_c('h4', [_vm._v("Criteria")]), _vm._v(" "), _c('h5', [_vm._v("Types")]), _vm._v(" "), _c('label', {
     staticClass: "mdl-checkbox mdl-js-checkbox",
     attrs: {
@@ -368,7 +366,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }), _vm._v(" "), _c('span', {
     staticClass: "mdl-checkbox__label"
   }, [_vm._v("Event")])])]), _vm._v(" "), _c('div', {
-    staticClass: "mdl-cell mdl-cell--9-col"
+    staticClass: "col-md-9"
   }, [_c('h4', [_vm._v("Search Items")]), _vm._v(" "), _c('form', {
     on: {
       "submit": _vm.search
@@ -421,51 +419,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           }
         }
       }
-    }, [_vm._v("View Details")])], 1)]), _vm._v(" "), _vm._m(0, true), _vm._v(" "), _vm._m(1, true)])])
+    }, [_vm._v("View Details")])], 1)])])])
   })], 2)])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('button', {
-    staticClass: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon",
-    attrs: {
-      "id": "btn1",
-      "data-upgraded": ",MaterialButton,MaterialRipple"
-    }
-  }, [_c('i', {
-    staticClass: "material-icons"
-  }, [_vm._v("more_vert")]), _vm._v(" "), _c('span', {
-    staticClass: "mdl-button__ripple-container"
-  }, [_c('span', {
-    staticClass: "mdl-ripple"
-  })])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "mdl-menu__container is-upgraded"
-  }, [_c('div', {
-    staticClass: "mdl-menu__outline mdl-menu--bottom-right"
-  }), _c('ul', {
-    staticClass: "mdl-menu mdl-js-menu mdl-menu--bottom-right",
-    attrs: {
-      "for": "btn1",
-      "data-upgraded": ",MaterialMenu"
-    }
-  }, [_c('li', {
-    staticClass: "mdl-menu__item",
-    attrs: {
-      "tabindex": "-1"
-    }
-  }, [_vm._v("Lorem")]), _vm._v(" "), _c('li', {
-    staticClass: "mdl-menu__item",
-    attrs: {
-      "disabled": "",
-      "tabindex": "-1"
-    }
-  }, [_vm._v("Ipsum")]), _vm._v(" "), _c('li', {
-    staticClass: "mdl-menu__item",
-    attrs: {
-      "tabindex": "-1"
-    }
-  }, [_vm._v("Dolor")])])])
-}]}
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()

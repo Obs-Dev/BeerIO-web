@@ -1,8 +1,8 @@
 <template>
     <div class="items">
-      <div class="mdl-grid">
+      <div>
 
-        <div class="mdl-cell mdl-cell--3-col">
+        <div class="col-md-3">
           <h4>Criteria</h4>
           <h5>Types</h5>
 
@@ -25,7 +25,7 @@
 
         </div>
 
-        <div class="mdl-cell mdl-cell--9-col">
+        <div class="col-md-9">
         <h4>Search Items</h4>
 
         <form @submit="search">
@@ -75,14 +75,14 @@
                   <router-link class="mdl-button" :to="{ name: 'item', params: { type: item.type,id: item.id }}">View Details</router-link>
                 </div>
               </div>
-              <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn1" data-upgraded=",MaterialButton,MaterialRipple">
+              <!--<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn1" data-upgraded=",MaterialButton,MaterialRipple">
                 <i class="material-icons">more_vert</i>
               <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
               <div class="mdl-menu__container is-upgraded"><div class="mdl-menu__outline mdl-menu--bottom-right"></div><ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn1" data-upgraded=",MaterialMenu">
                 <li class="mdl-menu__item" tabindex="-1">Lorem</li>
                 <li class="mdl-menu__item" disabled="" tabindex="-1">Ipsum</li>
                 <li class="mdl-menu__item" tabindex="-1">Dolor</li>
-              </ul></div>
+              </ul></div>-->
             </section>
           </li>
         </ul>

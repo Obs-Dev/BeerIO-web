@@ -3,6 +3,7 @@ export default function (Vue){
     setToken (token, expiration)  {
       localStorage.setItem('token', token)
       localStorage.setItem('expiration', expiration)
+
     },
 
     destroyToken () {
@@ -36,6 +37,23 @@ export default function (Vue){
         return true;
       else
         return false;
+    },
+
+    getLoggedInUser(){
+      if(localStorage.getItem('userId')){
+        return localStorage.getItem('userId');
+      }
+      if(!localStorage.getItem('userId')){
+        var url = "/api/v1/current/user";
+        Vue.http.get(url).then((response) => {
+          localStorage.setItem('userId',response.data.id)
+          return localStorage.getItem('userId');
+        })
+        .catch((error) => {
+          console.log(error);
+          throw "Couldn't Log in";
+        });
+      }
     }
   }
 

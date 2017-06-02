@@ -13,6 +13,7 @@ const Logout = (resolve) => require(['./components/Logout.vue'], resolve)
 const Dashboard = (resolve) => require(['./components/Dashboard.vue'], resolve)
 const Profile = (resolve) => require(['./components/Profile.vue'], resolve)
 const Items = (resolve) => require(['./components/Items.vue'], resolve)
+const People = (resolve) => require(['./components/People.vue'], resolve)
 
 export default new VueRouter({
     mode: 'history',
@@ -44,6 +45,11 @@ export default new VueRouter({
           }
         },
         {
+          path: '/profile/:id',
+          name: 'profileId',
+          component: Profile
+        },
+        {
           path: '/dashboard',
           name: 'dashboard',
           component: Dashboard
@@ -62,11 +68,18 @@ export default new VueRouter({
           component: Logout,
         },
         {
+          path: '/people',
+          name: 'people',
+          component: People
+        },
+        {
           path: '/test',
           name: 'testt',
-          component: AuthorizedClients },
+          component: AuthorizedClients
+        },
         {
           path: '*',
-          component: NotFoundView }
+          component: NotFoundView
+        }
       ]
 });

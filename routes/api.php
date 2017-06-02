@@ -53,8 +53,7 @@ Route::group(['prefix' => 'v1'], function()
   Route::get('item/{id}/comments','ApiItemController@showComments');
   Route::resource('search', 'ApiSearchController');
   Route::get('user/{id}','ApiUserController@show');
-
-
+  Route::get('user','ApiUserController@search');
 });
 
 //authenticated routes
@@ -64,7 +63,8 @@ Route::group(['prefix' => 'v1', 'middleware' => ['auth:api']], function()
   Route::put('favorite','ApiFavoriteController@store');
   Route::delete('favorite/{itemId}','ApiFavoriteController@destroy');
   Route::get('favorite','ApiFavoriteController@index');
-  Route::get('user','ApiUserController@index');
+  Route::get('current/user','ApiUserController@index');
+
   Route::post('item/{id}/comments','ApiItemController@addComment');
   Route::put('user/{id}','ApiUserController@update');
 });

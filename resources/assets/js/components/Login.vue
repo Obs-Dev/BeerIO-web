@@ -64,8 +64,10 @@
               .then((response) => {
                 console.log(response);
                 if(response.status==200){
-                  console.log("Login Success. Setting Token!!");
+
                   this.$auth.setToken(response.body.access_token, response.body.expires_in + Date.now())
+
+                  
                   this.$router.push('/dashboard')
                 }
                 this.loadingLogin = false;

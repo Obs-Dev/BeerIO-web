@@ -29811,6 +29811,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -30036,8 +30040,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             this.loadingDetail = true;
-            var url = "/api/v1/user";
 
+            if (id == null) {
+                console.log("Getting current logged in user");
+                this.editable = true;
+                return this.fetchLoggedInUser();
+            }
+            var url = "/api/v1/user/" + id;
+            console.log(url);
             this.$http.get(url).then(function (response) {
                 console.log(response.data.data);
                 _this.user = response.data.data;
@@ -30047,9 +30057,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.loadingDetail = false;
             });
         },
-
-        updateUser: function updateUser(user) {
+        fetchLoggedInUser: function fetchLoggedInUser() {
             var _this2 = this;
+
+            var url = "/api/v1/current/user";
+            this.$http.get(url).then(function (response) {
+                console.log(response);
+                var userUrl = "/api/v1/user/" + response.body.data.id;
+                _this2.$http.get(userUrl).then(function (response) {
+                    _this2.user = response.body.data;
+                    console.log(response);
+                    _this2.loadingDetail = false;
+                }).catch(function (error) {
+                    console.log(error);
+                    _this2.loadingDetail = false;
+                });
+            }).catch(function (error) {
+                console.log(error);
+                _this2.loadingDetail = false;
+            });
+        },
+        updateUser: function updateUser(user) {
+            var _this3 = this;
 
             this.loadingDetail = true;
             var url = "/api/v1/user/" + user.id;
@@ -30057,13 +30086,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$http.put(url, user).then(function (response) {
                 //console.log(response.data.data);
                 //this.fetchUser();
-                _this2.$notifier.notify("Profile Saved!");
-                _this2.loadingDetail = false;
+                _this3.$notifier.notify("Profile Saved!");
+                _this3.loadingDetail = false;
             }).catch(function (error) {
                 console.log(error);
-                _this2.updateUserError = true;
-                _this2.loadingDetail = false;
-                _this2.$notifier.notify("Couldn't update user data");
+                _this3.updateUserError = true;
+                _this3.loadingDetail = false;
+                _this3.$notifier.notify("Couldn't update user data");
+            });
+        },
+        fetchUsers: function fetchUsers(query) {
+            var _this4 = this;
+
+            this.loadingDetail = true;
+            var url = "/api/v1/user?q=" + query;
+
+            this.$http.get(url).then(function (response) {
+                console.log(response.data.data);
+                _this4.users = response.data.data;
+                _this4.loadingDetail = false;
+            }).catch(function (error) {
+                console.log(error);
+                _this4.loadingDetail = false;
             });
         }
     }
@@ -30105,6 +30149,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     isAuthenticated: function isAuthenticated() {
 
       if (this.getToken()) return true;else return false;
+    },
+    getLoggedInUser: function getLoggedInUser() {
+      if (localStorage.getItem('userId')) {
+        return localStorage.getItem('userId');
+      }
+      if (!localStorage.getItem('userId')) {
+        var url = "/api/v1/current/user";
+        Vue.http.get(url).then(function (response) {
+          localStorage.setItem('userId', response.data.id);
+          return localStorage.getItem('userId');
+        }).catch(function (error) {
+          console.log(error);
+          throw "Couldn't Log in";
+        });
+      }
     }
   };
 
@@ -30156,28 +30215,31 @@ var Home = { template: '<div>home</div>' };
 // lazy load components
 
 var ItemDetail = function ItemDetail(resolve) {
-  return __webpack_require__.e/* require */(6).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(179)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+  return __webpack_require__.e/* require */(15).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(179)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 };
 var NotFoundView = function NotFoundView(resolve) {
-  return __webpack_require__.e/* require */(3).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(183)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+  return __webpack_require__.e/* require */(12).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(183)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 };
 var AuthorizedClients = function AuthorizedClients(resolve) {
-  return __webpack_require__.e/* require */(1).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(185)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+  return __webpack_require__.e/* require */(10).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(185)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 };
 var Login = function Login(resolve) {
-  return __webpack_require__.e/* require */(5).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(180)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+  return __webpack_require__.e/* require */(14).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(180)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 };
 var Logout = function Logout(resolve) {
-  return __webpack_require__.e/* require */(4).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(181)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+  return __webpack_require__.e/* require */(13).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(181)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 };
 var Dashboard = function Dashboard(resolve) {
-  return __webpack_require__.e/* require */(7).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(178)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+  return __webpack_require__.e/* require */(16).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(178)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 };
 var Profile = function Profile(resolve) {
-  return __webpack_require__.e/* require */(2).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(184)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+  return __webpack_require__.e/* require */(11).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(184)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 };
 var Items = function Items(resolve) {
   return __webpack_require__.e/* require */(0/* duplicate */).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(133)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
+};
+var People = function People(resolve) {
+  return __webpack_require__.e/* require */(17).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(210)]; (resolve.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]({
@@ -30205,6 +30267,10 @@ var Items = function Items(resolve) {
       forLoggedInOnly: true
     }
   }, {
+    path: '/profile/:id',
+    name: 'profileId',
+    component: Profile
+  }, {
     path: '/dashboard',
     name: 'dashboard',
     component: Dashboard
@@ -30220,11 +30286,17 @@ var Items = function Items(resolve) {
     name: 'logout',
     component: Logout
   }, {
+    path: '/people',
+    name: 'people',
+    component: People
+  }, {
     path: '/test',
     name: 'testt',
-    component: AuthorizedClients }, {
+    component: AuthorizedClients
+  }, {
     path: '*',
-    component: NotFoundView }]
+    component: NotFoundView
+  }]
 }));
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, "/"))
 
@@ -32616,7 +32688,7 @@ if (typeof jQuery === 'undefined') {
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(6)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 /* 162 */
@@ -60644,15 +60716,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.$refs.sidenav.toggle()
       }
     }
-  }, [_c('md-icon', [_vm._v("delete")]), _vm._v(" "), _c('span', [_vm._v("Trash")])], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-layout', {
-    attrs: {
-      "md-gutter": "",
-      "md-column": "",
-      "md-align": "center"
-    }
-  }, [_c('notification'), _vm._v(" "), _c('router-view', {
+  }, [_c('md-icon', [_vm._v("delete")]), _vm._v(" "), _c('span', [_vm._v("Trash")])], 1)], 1)], 1)], 1), _vm._v(" "), _c('div', {}, [_c('notification'), _vm._v(" "), _c('router-view', {
     staticClass: "view"
-  })], 1)], 1)
+  })], 1)])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

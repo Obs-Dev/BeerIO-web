@@ -68,15 +68,19 @@
 
 
                                                 </div>
+                                                <div class="">
+                                                  <notification></notification>
 
-                                                            <md-layout md-gutter  md-column md-align="center">
+                                                  <router-view class="view"></router-view>
+                                                </div>
+                                                            <!--<md-layout md-gutter md-align="center">
 
                                                                 <notification></notification>
 
                                                                 <router-view class="view"></router-view>
 
 
-                                                            </md-layout>
+                                                            </md-layout>-->
           </div>
 
       </div>
