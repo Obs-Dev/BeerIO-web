@@ -19,7 +19,13 @@ This is the web app version of the beerIO application.
 #!php
 $ git clone https://Carbondesigndevelopment@bitbucket.org/carbondesignanddevelopment/beerio-web2.git
 ```
+- Clone the submodule
 
+```
+#!php
+$ git submodule update --init --recursive
+```
+- Rename .env.example2 to .env in the root project location
 - Run docker: 
 
 ```
@@ -41,6 +47,9 @@ $ npm run watch
 #!php
 $ cd laradock
 $ docker-compose exec workspace bash
+$ composer update //only have to run on first time
+$ php artisan migrate
+$ php artisan migrate --seed //only have to run on first time
 ```
 
 
