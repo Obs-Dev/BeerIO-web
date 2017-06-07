@@ -47,6 +47,9 @@ $ npm run watch
 #!php
 $ cd laradock
 $ docker-compose exec workspace bash
+$ composer update //only have to run on first time
+$ php artisan migrate
+$ php artisan migrate --seed //only have to run on first time
 ```
 
 
