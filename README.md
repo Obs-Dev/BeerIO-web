@@ -25,7 +25,7 @@ $ git clone https://Carbondesigndevelopment@bitbucket.org/carbondesignanddevelop
 #!php
 $ git submodule update --init --recursive
 ```
-
+- Rename .env.example2 to .env in the root project location
 - Run docker: 
 
 ```
