@@ -17,7 +17,7 @@ This is the web app version of the beerIO application.
 
 ```
 #!php
-$ git clone https://Carbondesigndevelopment@bitbucket.org/carbondesignanddevelopment/beerio-web2.git
+$ git clone https://useryourusername@bitbucket.org/carbondesignanddevelopment/beerio-web2.git
 ```
 - Clone the submodule
 
