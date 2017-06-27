@@ -13,12 +13,8 @@ This is the web app version of the beerIO application.
 
 ### How do I get set up? ###
 
-- Clone the repo
-
-```
-$ git clone https://useryourusername@bitbucket.org/carbondesignanddevelopment/beerio-web2.git
-```
-- Clone the submodule
+- Fork and clone the repo
+- Once you have it cloned on your machine, update the submodule
 
 ```
 $ git submodule update --init --recursive
