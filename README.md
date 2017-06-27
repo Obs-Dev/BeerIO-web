@@ -16,27 +16,23 @@ This is the web app version of the beerIO application.
 - Clone the repo
 
 ```
-#!php
 $ git clone https://useryourusername@bitbucket.org/carbondesignanddevelopment/beerio-web2.git
 ```
 - Clone the submodule
 
 ```
-#!php
 $ git submodule update --init --recursive
 ```
 - Rename .env.example to .env in the root project location
 - Run docker: 
 
 ```
-#!php
 $ docker-compose up  mysql apache2
 ```
 
 - For javascript(Vue): 
 
 ```
-#!javascript
 $ npm run watch
 ```
 
@@ -44,7 +40,6 @@ $ npm run watch
 
 
 ```
-#!php
 $ cd laradock
 $ docker-compose exec workspace bash
 $ composer update //only have to run on first time
@@ -63,4 +58,4 @@ $ php artisan passport:install //only have to run on first time
 
 ### Who do I talk to? ###
 
-* email: r.kazokas@carbondd.com
+* email: r.kazokas@carbondd.com or ryan.kazokas@gmail.com
