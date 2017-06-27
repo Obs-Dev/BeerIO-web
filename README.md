@@ -4,7 +4,7 @@ This is the web app version of the beerIO application.
 
 ### What is this repository for? ###
 
-* Anyone that will be working on the BeerIO project
+* Anyone that will be working on the BeerIO Web project and API
 
 ### Dependencies ###
 - [GIT](https://git-scm.com/download/)
