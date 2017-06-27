@@ -24,9 +24,10 @@ $ git clone https://useryourusername@bitbucket.org/carbondesignanddevelopment/be
 $ git submodule update --init --recursive
 ```
 - Rename .env.example to .env in the root project location
-- Run docker: 
+- Run docker in the laradock directory: 
 
 ```
+$ cd laradock
 $ docker-compose up  mysql apache2
 ```
 
