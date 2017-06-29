@@ -27,13 +27,17 @@ $ cd laradock
 $ docker-compose up  mysql apache2
 ```
 
-- For javascript(Vue): 
+- Run NPM Install on the initial run.
+```
+$ npm install
+```
 
+- Run webpack to bundle javascript files
 ```
 $ npm run watch
 ```
 
-- Run and seed migrations in the laradock folder via bash inside the workspace
+- Open a new terminal and run and seed migrations in the laradock folder via bash inside the docker workspace
 
 
 ```
