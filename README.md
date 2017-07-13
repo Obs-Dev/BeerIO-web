@@ -48,6 +48,13 @@ $ php artisan migrate --seed //only have to run on first time
 $ php artisan passport:install //only have to run on first time
 ```
 
+!Important:
+Inside the docker container run this in the /var/www/storage directory
+```
+sudo chmod 0600 storage/oauth*
+sudo chown laradock:laradock storage/oauth*
+```
+
 
 - Visit http://localhost/
 
