@@ -30598,14 +30598,14 @@ var People = function People(resolve) {
     name: 'dashboard',
     component: Dashboard
   }, {
-    path: '/auth/login',
+    path: '/authlogin',
     name: 'login',
     component: Login,
     meta: {
       forVisitors: true
     }
   }, {
-    path: '/auth/logout',
+    path: '/authlogout',
     name: 'logout',
     component: Logout
   }, {
