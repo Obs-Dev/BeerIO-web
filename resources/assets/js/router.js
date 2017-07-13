@@ -55,7 +55,7 @@ export default new VueRouter({
           component: Dashboard
         },
         {
-          path: '/auth/login',
+          path: '/authlogin',
           name: 'login',
           component: Login,
           meta: {
@@ -63,7 +63,7 @@ export default new VueRouter({
           }
         },
         {
-          path: '/auth/logout',
+          path: '/authlogout',
           name: 'logout',
           component: Logout,
         },
