@@ -9,7 +9,7 @@
         "deployer/deployer": "^5.0",
         "guzzlehttp/guzzle": "~6.0",
         "laravel/framework": "5.4.*",
-        "laravel/passport": "v1",
+        "laravel/passport": "^3.0",
         "laravel/tinker": "~1.0",
         "ramsey/uuid": "^3.6",
         "tymon/jwt-auth": "0.5.*",
