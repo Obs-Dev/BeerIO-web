@@ -1,4 +1,5 @@
 # Beerio Web Version #
+[![Build Status](https://travis-ci.org/ryankazokas/beerio-web.svg?branch=master)](https://travis-ci.org/ryankazokas/beerio-web)
 
 This is the web app version of the beerIO application.
 
