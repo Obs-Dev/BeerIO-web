@@ -113,8 +113,8 @@ if (false) {(function () {
 
       this.loadingLogin = true;
       var data = {
-        client_id: "1",
-        client_secret: "WLbnPBVennWVO5kZZEre31kQ0Qb6KzobTtpoplVv",
+        client_id: "26",
+        client_secret: "7xIRRHJqz3CQyqdG9R1Oj27UXJqCaW7KRS32qAp3",
         grant_type: "password",
         username: this.email,
         password: this.password

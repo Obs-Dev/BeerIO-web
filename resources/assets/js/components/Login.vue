@@ -54,8 +54,8 @@
           login(){
             this.loadingLogin = true;
             var data = {
-              client_id:"1",
-              client_secret:"WLbnPBVennWVO5kZZEre31kQ0Qb6KzobTtpoplVv",
+              client_id:process.env.MIX_CLIENT_ID,
+              client_secret:process.env.MIX_CLIENT_SECRET,
               grant_type:"password",
               username: this.email,
               password: this.password

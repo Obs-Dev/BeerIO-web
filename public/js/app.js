@@ -28911,6 +28911,7 @@ __webpack_require__(11);
 
 
 
+
 __WEBPACK_IMPORTED_MODULE_2_vue___default.a.mixin(__WEBPACK_IMPORTED_MODULE_10__components_api_ItemMixin_js__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_2_vue___default.a.mixin(__WEBPACK_IMPORTED_MODULE_11__components_api_UserMixin_js__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_2_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]);
