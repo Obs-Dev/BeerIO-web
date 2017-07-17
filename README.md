@@ -10,7 +10,7 @@ This is the web app version of the beerIO application.
 ### Dependencies ###
 - [GIT](https://git-scm.com/download/)
 - [Docker and Docker-Compose](https://docs.docker.com/engine/installation/)
-- [NPM](https://docs.docker.com/engine/installation/)
+- [NPM](https://nodejs.org/en/download/)
 
 ### How do I get set up? ###
 
@@ -47,6 +47,7 @@ $ docker-compose exec workspace bash
 $ composer update //only have to run on first time
 $ php artisan migrate --seed //only have to run on first time
 $ php artisan passport:install //only have to run on first time
+$ php artisan key:generate //only have to run on first time
 ```
 
 !Important:
