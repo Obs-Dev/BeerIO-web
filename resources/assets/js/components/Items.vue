@@ -6,22 +6,19 @@
           <h4>Criteria</h4>
           <h5>Types</h5>
 
-          <label class="mdl-checkbox mdl-js-checkbox" for="beer">
-            <input v-model="types" type="checkbox" id="beer" class="mdl-checkbox__input" value="beer" checked>
-            <span class="mdl-checkbox__label">Beer</span>
-         </label>
-         <label class="mdl-checkbox mdl-js-checkbox" for="brewery">
-           <input v-model="types" type="checkbox" id="brewery" class="mdl-checkbox__input" value="brewery" checked>
-           <span class="mdl-checkbox__label">Brewery</span>
-        </label>
-        <label class="mdl-checkbox mdl-js-checkbox" for="guild">
-          <input v-model="types" type="checkbox" id="guild" class="mdl-checkbox__input" value="guild" checked>
-          <span class="mdl-checkbox__label">Guild</span>
-       </label>
-       <label class="mdl-checkbox mdl-js-checkbox" for="event">
-         <input v-model="types" type="checkbox" id="event" class="mdl-checkbox__input" value="event" checked>
-         <span class="mdl-checkbox__label">Event</span>
-      </label>
+          <div class="checkbox">
+            <label><input v-model="types"  type="checkbox" value="beer">Beer</label>
+          </div>
+          <div class="checkbox">
+            <label><input v-model="types"  type="checkbox" value="brewery">Brewery</label>
+          </div>
+          <div class="checkbox">
+            <label><input v-model="types"  type="checkbox" value="guild">Guild</label>
+          </div>
+          <div class="checkbox">
+            <label><input v-model="types"  type="checkbox" value="event">Event</label>
+          </div>
+
 
         </div>
 
@@ -29,63 +26,66 @@
         <h4>Search Items</h4>
 
         <form @submit="search">
+        
+          <div class="input-group">
+            <input v-model="term" type="text" class="form-control" placeholder="Search for...">
+            <span class="input-group-btn">
+              <button  class="btn btn-default" type="submit">Search!</button>
+            </span>
+          </div>
 
-            <md-input-container md-inline>
-              <label>Search</label>
-              <md-input v-model="term"></md-input>
-            </md-input-container>
-          <!--<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" v-model="term" id="search-text"/>
-            <label class="mdl-textfield__label" for="search-text">Search:</label>
-          </div>-->
         </form>
 
-        <ul class = "list-group">
+
           <span v-if="loadingList">
-            <div class="mdl-spinner mdl-js-spinner is-active"></div>
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped active" role="progressbar"
+              aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                Loading...
+              </div>
+            </div>
           </span>
           <span v-else-if="!list.data">
             Nothing Found!
           </span>
-          <li class = "list-group-item" v-for="item in list.data">
 
-            <!--<button @click = "showTask(item.id)" class = "btn btn-primary btn-xs">Edit</button>-->
-            <!--<button @click = "deleteTask(item.id)"class = "btn btn-danger btn-xs">Delete</button>-->
-            <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-
-                <span v-if="item.labels">
-                  <img class="list-image" :src="item.labels.medium" />
+            <div class="col-md-12" v-for="item in list.data" style="margin-top:30px">
+            <div class="col-md-3">
+              <span v-if="item.labels">
+                <img class="list-image" :src="item.labels.medium" />
+              </span>
+              <span v-else>
+                <img class="list-image" src="https://www.crafthounds.com/wp-content/uploads/2016/11/No-Image-Available.png" />
+              </span>
+            </div>
+            <div class="col-md-9">
+            <h4 class="list-group-item-heading">
+              <span v-if="item.nameDisplay">
+                  {{item.nameDisplay}}
                 </span>
                 <span v-else>
-                  <img class="list-image" src="https://www.crafthounds.com/wp-content/uploads/2016/11/No-Image-Available.png" />
-                </span>
-              <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
-                <div class="mdl-card__supporting-text">
-                  <h4>
-                    <span v-if="item.nameDisplay">
-                      {{item.nameDisplay}}
-                    </span>
-                    <span v-else>
-                      {{item.name}}
-                    </span>
-                  </h4>
-                  {{item.description}}test
-                </div>
-                <div class="mdl-card__actions">
-                  <router-link class="mdl-button" :to="{ name: 'item', params: { type: item.type,id: item.id }}">View Details</router-link>
-                </div>
-              </div>
-              <!--<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn1" data-upgraded=",MaterialButton,MaterialRipple">
-                <i class="material-icons">more_vert</i>
-              <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
-              <div class="mdl-menu__container is-upgraded"><div class="mdl-menu__outline mdl-menu--bottom-right"></div><ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn1" data-upgraded=",MaterialMenu">
-                <li class="mdl-menu__item" tabindex="-1">Lorem</li>
-                <li class="mdl-menu__item" disabled="" tabindex="-1">Ipsum</li>
-                <li class="mdl-menu__item" tabindex="-1">Dolor</li>
-              </ul></div>-->
-            </section>
-          </li>
-        </ul>
+                  {{item.name}}
+                </span> 
+              
+              <span v-show="item.status=='verified'" class="label label-success">{{item.statusDisplay}}</span>
+              <span v-show="item.status=='update_pending'" class="label label-warning">{{item.statusDisplay}}</span>
+              <span v-show="item.status=='delete_pending'" class="label label-danger">{{item.statusDisplay}}</span>
+            </h4>
+            <div>
+              <span v-if="item.style">
+                {{item.style.name}}<br />
+              </span>
+
+              <p>Type: {{item.type}}</p>
+              <p>{{item.description}}</p>
+            </div>
+            <router-link class="btn btn-primary" :to="{ name: 'item', params: { type: item.type,id: item.id }}">View Details</router-link>
+            </div>
+            <hr />
+            </div>
+
+
+
         </div>
       </div>
     </div>

@@ -12,7 +12,7 @@ export default {
     methods: {
       logout(){
         this.$auth.destroyToken();
-        this.$router.push('/auth/login')
+        this.$router.push('/authlogin')
 
       }
 

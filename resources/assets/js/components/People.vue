@@ -1,55 +1,40 @@
 <template>
-  <div>
-    <div class="col-md-3">
+  <div class="container">
 
-    </div>
-    <div class="col-md-9">
+    <div class="col-md-12">
       <form @submit="search">
-
-          <md-input-container md-inline>
-            <label>Search</label>
-            <md-input v-on:click="search" v-model="term"></md-input>
-          </md-input-container>
-
+          <div class="form-group">
+              <label for="name">Search:</label>
+              <input v-on:change="search" v-model="term" type="text" class="form-control" id="term">
+           </div>
       </form>
-      <div class="col-md-12">
-        <span v-if="users.length == 0">
+      <span v-if="users.length == 0">
           No users found. Try another search term.
-        </span>
-        <md-card md-with-hover v-for="user in users" v-bind:key="user.email" >
-          <md-card-header>
-            <md-avatar>
-
+      </span>
+      <ul class="media-list">
+        <li v-for="user in users" v-bind:key="user.email" class="media">
+        <router-link :to="{ name: 'profileId', params: { id: user.id }}" >
+          <div class="media-left">
+            
               <span v-if="user.image">
                 <img :src="user.image" :alt="user.name">
               </span>
               <span v-else>
                 <img src="http://smtp.icimod.org/girc/dmis/img/user-avatar-placeholder.png" :alt="user.name">
               </span>
-            </md-avatar>
+            
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading">{{user.name}}</h4>
+            <p>{{user.email}}</p>
+            <p>{{user.bio}}</p>
 
-            <div class="md-title">{{user.name}}</div>
-            <div class="md-subhead">{{user.email}}</div>
-          </md-card-header>
+          </div>
+          </router-link>
+        </li>
+      </ul>
 
-
-          <md-card-content>
-            <span v-if="user.bio">
-              {{user.bio}}
-            </span>
-            <span v-else>
-              This user has no bio
-            </span>
-
-          </md-card-content>
-
-          <md-card-actions>
-            <md-button>Follow</md-button>
-            <md-button>View Profile</md-button>
-          </md-card-actions>
-        </md-card>
-
-      </div>
+      
     </div>
   </div>
 </template>

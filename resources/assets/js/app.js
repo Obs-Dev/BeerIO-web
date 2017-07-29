@@ -37,8 +37,7 @@ import VueRouter  from 'vue-router'
 import router     from './router'
 import Vue        from 'vue'
 import VueRecource from 'vue-resource';
-import VueMaterial from 'vue-material'
-import 'vue-material/dist/vue-material.css'
+
 import Auth from './components/auth/Auth.js';
 import App from './App.vue'
 import Notification from './components/Notification.vue';
@@ -53,7 +52,7 @@ Vue.use(VueRouter)
 Vue.use(VueRecource);
 Vue.use(Auth);
 Vue.use(Notifier);
-Vue.use(VueMaterial);
+
 
 Vue.component('notification', Notification);
 
@@ -85,7 +84,7 @@ router.beforeEach((to,from,next)=>{
       console.log("Authenticated");
       next()
     }else next({
-      path:'/auth/login'
+      path:'/authlogin'
     })
   }else next()
 })

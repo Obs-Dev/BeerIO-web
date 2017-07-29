@@ -19,14 +19,14 @@ export default {
             this.$http.put('/api/v1/favorite/', body)
                 .then((response) => {
                     'use strict';
-                    this.$notifier.notify("Favorited!");
+                    //this.$notifier.notify("Favorited!");
                     this.favorited = true;
                     console.log(response);
 
                 })
                 .catch((error) => {
                     console.log(error);
-                    this.$notifier.notify("An error occurred adding to favorites. Please try again");
+                    //this.$notifier.notify("An error occurred adding to favorites. Please try again");
                 });
 
 
@@ -36,13 +36,13 @@ export default {
             this.$http.delete('/api/v1/favorite/'+itemId)
                 .then((response) => {
                     'use strict';
-                    this.$notifier.notify("Removed from favorites!");
+                    //this.$notifier.notify("Removed from favorites!");
                     this.favorited = false;
 
                 })
                 .catch((error) => {
                     console.log(error);
-                    this.$notifier.notify("An error occurred removing from favorites. Please try again");
+                    //this.$notifier.notify("An error occurred removing from favorites. Please try again");
                 });
 
 
@@ -146,7 +146,7 @@ export default {
                   this.comments = response.body.data;
 
               }).catch(function(error){
-                this.$notifier.notify("Couldn't load comments");
+                //this.$notifier.notify("Couldn't load comments");
               });
 
         },
@@ -154,7 +154,7 @@ export default {
         addComment: function(id) {
           console.log(this.newComment);
           if(this.newComment == ""){
-            this.$notifier.notify("Please add a comment");
+            //this.$notifier.notify("Please add a comment");
             return;
           }
           var body = {
@@ -165,9 +165,9 @@ export default {
               .then(function(response){
                   this.fetchComments(id);
                   this.newComment = "";
-                  this.$notifier.notify("Comment Added!");
+                  //this.$notifier.notify("Comment Added!");
               }).catch(function(error){
-                this.$notifier.notify("Couldn't add comment");
+                //this.$notifier.notify("Couldn't add comment");
               });
 
         },

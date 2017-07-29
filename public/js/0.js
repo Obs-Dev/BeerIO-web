@@ -5,10 +5,11 @@ webpackJsonp([0],{
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_node_modules_vue_loader_lib_selector_type_script_index_0_Items_vue__ = __webpack_require__(189);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_38653bc5_node_modules_vue_loader_lib_selector_type_template_index_0_Items_vue__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_node_modules_vue_loader_lib_selector_type_script_index_0_Items_vue__ = __webpack_require__(185);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_node_modules_vue_loader_lib_selector_type_script_index_0_Items_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_node_modules_vue_loader_lib_selector_type_script_index_0_Items_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_38653bc5_node_modules_vue_loader_lib_selector_type_template_index_0_Items_vue__ = __webpack_require__(197);
 var disposed = false
-var normalizeComponent = __webpack_require__(4)
+var normalizeComponent = __webpack_require__(3)
 /* script */
 
 /* template */
@@ -20,7 +21,7 @@ var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_node_modules_vue_loader_lib_selector_type_script_index_0_Items_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_node_modules_vue_loader_lib_selector_type_script_index_0_Items_vue___default.a,
   __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_38653bc5_node_modules_vue_loader_lib_selector_type_template_index_0_Items_vue__["a" /* default */],
   __vue_styles__,
   __vue_scopeId__,
@@ -51,10 +52,15 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 189:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ 185:
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 //
 //
 //
@@ -149,7 +155,7 @@ if (false) {(function () {
 //
 //
 
-/* harmony default export */ __webpack_exports__["a"] = ({
+exports.default = {
     data: function data() {
         return {
             list: [],
@@ -200,11 +206,11 @@ if (false) {(function () {
             });
         }
     }
-});
+};
 
 /***/ }),
 
-/***/ 201:
+/***/ 197:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -213,24 +219,18 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "items"
   }, [_c('div', [_c('div', {
     staticClass: "col-md-3"
-  }, [_c('h4', [_vm._v("Criteria")]), _vm._v(" "), _c('h5', [_vm._v("Types")]), _vm._v(" "), _c('label', {
-    staticClass: "mdl-checkbox mdl-js-checkbox",
-    attrs: {
-      "for": "beer"
-    }
-  }, [_c('input', {
+  }, [_c('h4', [_vm._v("Criteria")]), _vm._v(" "), _c('h5', [_vm._v("Types")]), _vm._v(" "), _c('div', {
+    staticClass: "checkbox"
+  }, [_c('label', [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
       value: (_vm.types),
       expression: "types"
     }],
-    staticClass: "mdl-checkbox__input",
     attrs: {
       "type": "checkbox",
-      "id": "beer",
-      "value": "beer",
-      "checked": ""
+      "value": "beer"
     },
     domProps: {
       "checked": Array.isArray(_vm.types) ? _vm._i(_vm.types, "beer") > -1 : (_vm.types)
@@ -253,26 +253,18 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         }
       }
     }
-  }), _vm._v(" "), _c('span', {
-    staticClass: "mdl-checkbox__label"
-  }, [_vm._v("Beer")])]), _vm._v(" "), _c('label', {
-    staticClass: "mdl-checkbox mdl-js-checkbox",
-    attrs: {
-      "for": "brewery"
-    }
-  }, [_c('input', {
+  }), _vm._v("Beer")])]), _vm._v(" "), _c('div', {
+    staticClass: "checkbox"
+  }, [_c('label', [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
       value: (_vm.types),
       expression: "types"
     }],
-    staticClass: "mdl-checkbox__input",
     attrs: {
       "type": "checkbox",
-      "id": "brewery",
-      "value": "brewery",
-      "checked": ""
+      "value": "brewery"
     },
     domProps: {
       "checked": Array.isArray(_vm.types) ? _vm._i(_vm.types, "brewery") > -1 : (_vm.types)
@@ -295,26 +287,18 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         }
       }
     }
-  }), _vm._v(" "), _c('span', {
-    staticClass: "mdl-checkbox__label"
-  }, [_vm._v("Brewery")])]), _vm._v(" "), _c('label', {
-    staticClass: "mdl-checkbox mdl-js-checkbox",
-    attrs: {
-      "for": "guild"
-    }
-  }, [_c('input', {
+  }), _vm._v("Brewery")])]), _vm._v(" "), _c('div', {
+    staticClass: "checkbox"
+  }, [_c('label', [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
       value: (_vm.types),
       expression: "types"
     }],
-    staticClass: "mdl-checkbox__input",
     attrs: {
       "type": "checkbox",
-      "id": "guild",
-      "value": "guild",
-      "checked": ""
+      "value": "guild"
     },
     domProps: {
       "checked": Array.isArray(_vm.types) ? _vm._i(_vm.types, "guild") > -1 : (_vm.types)
@@ -337,26 +321,18 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         }
       }
     }
-  }), _vm._v(" "), _c('span', {
-    staticClass: "mdl-checkbox__label"
-  }, [_vm._v("Guild")])]), _vm._v(" "), _c('label', {
-    staticClass: "mdl-checkbox mdl-js-checkbox",
-    attrs: {
-      "for": "event"
-    }
-  }, [_c('input', {
+  }), _vm._v("Guild")])]), _vm._v(" "), _c('div', {
+    staticClass: "checkbox"
+  }, [_c('label', [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
       value: (_vm.types),
       expression: "types"
     }],
-    staticClass: "mdl-checkbox__input",
     attrs: {
       "type": "checkbox",
-      "id": "event",
-      "value": "event",
-      "checked": ""
+      "value": "event"
     },
     domProps: {
       "checked": Array.isArray(_vm.types) ? _vm._i(_vm.types, "event") > -1 : (_vm.types)
@@ -379,35 +355,43 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         }
       }
     }
-  }), _vm._v(" "), _c('span', {
-    staticClass: "mdl-checkbox__label"
-  }, [_vm._v("Event")])])]), _vm._v(" "), _c('div', {
+  }), _vm._v("Event")])])]), _vm._v(" "), _c('div', {
     staticClass: "col-md-9"
   }, [_c('h4', [_vm._v("Search Items")]), _vm._v(" "), _c('form', {
     on: {
       "submit": _vm.search
     }
-  }, [_c('md-input-container', {
-    attrs: {
-      "md-inline": ""
-    }
-  }, [_c('label', [_vm._v("Search")]), _vm._v(" "), _c('md-input', {
-    model: {
+  }, [_c('div', {
+    staticClass: "input-group"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
       value: (_vm.term),
-      callback: function($$v) {
-        _vm.term = $$v
-      },
       expression: "term"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "placeholder": "Search for..."
+    },
+    domProps: {
+      "value": (_vm.term)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.term = $event.target.value
+      }
     }
-  })], 1)], 1), _vm._v(" "), _c('ul', {
-    staticClass: "list-group"
-  }, [(_vm.loadingList) ? _c('span', [_c('div', {
-    staticClass: "mdl-spinner mdl-js-spinner is-active"
-  })]) : (!_vm.list.data) ? _c('span', [_vm._v("\n        Nothing Found!\n      ")]) : _vm._e(), _vm._v(" "), _vm._l((_vm.list.data), function(item) {
-    return _c('li', {
-      staticClass: "list-group-item"
-    }, [_c('section', {
-      staticClass: "section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp"
+  }), _vm._v(" "), _vm._m(0)])]), _vm._v(" "), (_vm.loadingList) ? _c('span', [_vm._m(1)]) : (!_vm.list.data) ? _c('span', [_vm._v("\n        Nothing Found!\n      ")]) : _vm._e(), _vm._v(" "), _vm._l((_vm.list.data), function(item) {
+    return _c('div', {
+      staticClass: "col-md-12",
+      staticStyle: {
+        "margin-top": "30px"
+      }
+    }, [_c('div', {
+      staticClass: "col-md-3"
     }, [(item.labels) ? _c('span', [_c('img', {
       staticClass: "list-image",
       attrs: {
@@ -418,14 +402,36 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       attrs: {
         "src": "https://www.crafthounds.com/wp-content/uploads/2016/11/No-Image-Available.png"
       }
-    })]), _vm._v(" "), _c('div', {
-      staticClass: "mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone"
-    }, [_c('div', {
-      staticClass: "mdl-card__supporting-text"
-    }, [_c('h4', [(item.nameDisplay) ? _c('span', [_vm._v("\n                  " + _vm._s(item.nameDisplay) + "\n                ")]) : _c('span', [_vm._v("\n                  " + _vm._s(item.name) + "\n                ")])]), _vm._v("\n              " + _vm._s(item.description) + "test\n            ")]), _vm._v(" "), _c('div', {
-      staticClass: "mdl-card__actions"
-    }, [_c('router-link', {
-      staticClass: "mdl-button",
+    })])]), _vm._v(" "), _c('div', {
+      staticClass: "col-md-9"
+    }, [_c('h4', {
+      staticClass: "list-group-item-heading"
+    }, [(item.nameDisplay) ? _c('span', [_vm._v("\n              " + _vm._s(item.nameDisplay) + "\n            ")]) : _c('span', [_vm._v("\n              " + _vm._s(item.name) + "\n            ")]), _vm._v(" "), _c('span', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (item.status == 'verified'),
+        expression: "item.status=='verified'"
+      }],
+      staticClass: "label label-success"
+    }, [_vm._v(_vm._s(item.statusDisplay))]), _vm._v(" "), _c('span', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (item.status == 'update_pending'),
+        expression: "item.status=='update_pending'"
+      }],
+      staticClass: "label label-warning"
+    }, [_vm._v(_vm._s(item.statusDisplay))]), _vm._v(" "), _c('span', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (item.status == 'delete_pending'),
+        expression: "item.status=='delete_pending'"
+      }],
+      staticClass: "label label-danger"
+    }, [_vm._v(_vm._s(item.statusDisplay))])]), _vm._v(" "), _c('div', [(item.style) ? _c('span', [_vm._v("\n            " + _vm._s(item.style.name)), _c('br')]) : _vm._e(), _vm._v(" "), _c('p', [_vm._v("Type: " + _vm._s(item.type))]), _vm._v(" "), _c('p', [_vm._v(_vm._s(item.description))])]), _vm._v(" "), _c('router-link', {
+      staticClass: "btn btn-primary",
       attrs: {
         "to": {
           name: 'item',
@@ -435,10 +441,34 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
           }
         }
       }
-    }, [_vm._v("View Details")])], 1)])])])
-  })], 2)])])])
+    }, [_vm._v("View Details")])], 1), _vm._v(" "), _c('hr')])
+  })], 2)])])
 }
-var staticRenderFns = []
+var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('span', {
+    staticClass: "input-group-btn"
+  }, [_c('button', {
+    staticClass: "btn btn-default",
+    attrs: {
+      "type": "submit"
+    }
+  }, [_vm._v("Search!")])])
+},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "progress"
+  }, [_c('div', {
+    staticClass: "progress-bar progress-bar-striped active",
+    staticStyle: {
+      "width": "100%"
+    },
+    attrs: {
+      "role": "progressbar",
+      "aria-valuenow": "100",
+      "aria-valuemin": "0",
+      "aria-valuemax": "100"
+    }
+  }, [_vm._v("\n            Loading...\n          ")])])
+}]
 render._withStripped = true
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);

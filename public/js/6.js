@@ -1,14 +1,15 @@
 webpackJsonp([6],{
 
-/***/ 180:
+/***/ 176:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_node_modules_vue_loader_lib_selector_type_script_index_0_Login_vue__ = __webpack_require__(190);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_507f46ee_node_modules_vue_loader_lib_selector_type_template_index_0_Login_vue__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_node_modules_vue_loader_lib_selector_type_script_index_0_Login_vue__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_node_modules_vue_loader_lib_selector_type_script_index_0_Login_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_node_modules_vue_loader_lib_selector_type_script_index_0_Login_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_507f46ee_node_modules_vue_loader_lib_selector_type_template_index_0_Login_vue__ = __webpack_require__(199);
 var disposed = false
-var normalizeComponent = __webpack_require__(4)
+var normalizeComponent = __webpack_require__(3)
 /* script */
 
 /* template */
@@ -20,7 +21,7 @@ var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_node_modules_vue_loader_lib_selector_type_script_index_0_Login_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_node_modules_vue_loader_lib_selector_type_script_index_0_Login_vue___default.a,
   __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_507f46ee_node_modules_vue_loader_lib_selector_type_template_index_0_Login_vue__["a" /* default */],
   __vue_styles__,
   __vue_scopeId__,
@@ -51,10 +52,29 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 190:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ 186:
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -93,7 +113,7 @@ if (false) {(function () {
 //
 //
 
-/* harmony default export */ __webpack_exports__["a"] = ({
+exports.default = {
   data: function data() {
     return {
       email: null,
@@ -137,89 +157,83 @@ if (false) {(function () {
       });
     }
   }
-});
+};
 
 /***/ }),
 
-/***/ 203:
+/***/ 199:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('md-layout', [_c('md-layout', {
+  return _c('div', {
+    staticClass: "container"
+  }, [_c('div', {
+    staticClass: "wrapper"
+  }, [_c('h3', {
+    staticClass: "form-signin-heading"
+  }, [_vm._v("Welcome Back! Please Sign In")]), _vm._v(" "), _c('hr', {
+    staticClass: "colorgraph"
+  }), _c('br'), _vm._v(" "), (_vm.errorMessage) ? _c('span', [_c('p', {
+    staticClass: "warning-label"
+  }, [_vm._v(_vm._s(_vm.errorMessage))])]) : _vm._e(), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.email),
+      expression: "email"
+    }],
+    staticClass: "form-control",
     attrs: {
-      "md-flex": "30"
-    }
-  }), _vm._v(" "), _c('md-layout', {
-    attrs: {
-      "md-tag": "form",
-      "novalidate": "",
-      "md-align": "center"
+      "type": "text",
+      "name": "email",
+      "placeholder": "Email",
+      "required": "",
+      "autofocus": ""
+    },
+    domProps: {
+      "value": (_vm.email)
     },
     on: {
-      "submit": function($event) {
-        $event.stopPropagation();
-        $event.preventDefault();
-        _vm.submit($event)
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.email = $event.target.value
       }
     }
-  }, [(_vm.errorMessage) ? _c('span', [_c('p', {
-    staticClass: "warning-label"
-  }, [_vm._v(_vm._s(_vm.errorMessage))])]) : _vm._e(), _vm._v(" "), _c('md-layout', {
-    attrs: {
-      "md-tag": "md-card",
-      "md-column": ""
-    }
-  }, [_c('md-card-header', [_c('div', {
-    staticClass: "md-title"
-  }, [_vm._v("Login")])]), _vm._v(" "), _c('md-card-content', [_c('md-input-container', [_c('md-icon', [_vm._v("person")]), _vm._v(" "), _c('label', [_vm._v("Email")]), _vm._v(" "), _c('md-input', {
-    attrs: {
-      "email": "",
-      "required": ""
-    },
-    model: {
-      value: (_vm.email),
-      callback: function($$v) {
-        _vm.email = $$v
-      },
-      expression: "email"
-    }
-  })], 1), _vm._v(" "), _c('md-input-container', {
-    attrs: {
-      "md-has-password": ""
-    }
-  }, [_c('md-icon', [_vm._v("lock")]), _vm._v(" "), _c('label', [_vm._v("Password")]), _vm._v(" "), _c('md-input', {
+  }), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.password),
+      expression: "password"
+    }],
+    staticClass: "form-control",
     attrs: {
       "type": "password",
+      "name": "Password",
+      "placeholder": "Password",
       "required": ""
     },
-    model: {
-      value: (_vm.password),
-      callback: function($$v) {
-        _vm.password = $$v
-      },
-      expression: "password"
-    }
-  })], 1)], 1), _vm._v(" "), _c('md-card-actions', [_c('md-button', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (!_vm.loadingLogin),
-      expression: "!loadingLogin"
-    }],
-    attrs: {
-      "type": "button"
+    domProps: {
+      "value": (_vm.password)
     },
-    nativeOn: {
-      "click": function($event) {
-        _vm.login($event)
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.password = $event.target.value
       }
     }
-  }, [_vm._v("Login")])], 1)], 1)], 1), _vm._v(" "), _c('md-layout', {
+  }), _vm._v(" "), _c('button', {
+    staticClass: "btn btn-lg btn-primary btn-block",
     attrs: {
-      "md-flex": "30"
+      "name": "Submit",
+      "value": "Login",
+      "type": "button"
+    },
+    on: {
+      "click": _vm.login
     }
-  })], 1)
+  }, [_vm._v("Login")])])])
 }
 var staticRenderFns = []
 render._withStripped = true

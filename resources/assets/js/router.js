@@ -4,16 +4,20 @@ import VueRouter    from 'vue-router'
 const Home = { template: '<div>home</div>' }
 
 // lazy load components
-
-const ItemDetail = (resolve) => require(['./components/ItemDetail.vue'], resolve)
+//const ItemDetail = (resolve) => require(['./components/ItemDetail.vue'], resolve).default
 const NotFoundView = (resolve) => require(['./components/NotFoundView.vue'], resolve)
 const AuthorizedClients = (resolve) => require(['./components/passport/Clients.vue'], resolve)
 const Login = (resolve) => require(['./components/Login.vue'], resolve)
 const Logout = (resolve) => require(['./components/Logout.vue'], resolve)
 const Dashboard = (resolve) => require(['./components/Dashboard.vue'], resolve)
-const Profile = (resolve) => require(['./components/Profile.vue'], resolve)
-const Items = (resolve) => require(['./components/Items.vue'], resolve)
+const Items = (resolve) => require(['./components/Items.vue'], resolve).default
 const People = (resolve) => require(['./components/People.vue'], resolve)
+const Discover = (resolve) => require(['./components/Discover.vue'], resolve)
+
+//needs to be loaded  eagerly because used in nested routes.
+//Nested routes have issues with going directly to them, or being reloaded
+import ItemDetail from './components/ItemDetail'; 
+import Profile from './components/Profile'; 
 
 export default new VueRouter({
     mode: 'history',
@@ -27,14 +31,12 @@ export default new VueRouter({
           path: '/items',
           name: 'items',
           component: Items,
-          meta: {
-            forLoggedInOnly: true
-          }
         },
+
         {
           path: '/items/:type/:id',
           name: 'item',
-          component: ItemDetail
+          component: ItemDetail,
         },
         {
           path: '/profile',
@@ -52,7 +54,18 @@ export default new VueRouter({
         {
           path: '/dashboard',
           name: 'dashboard',
-          component: Dashboard
+          component: Dashboard,
+          meta: {
+            forLoggedInOnly: true
+          }
+        },
+        {
+          path: '/discover',
+          name: 'discover',
+          component: Discover,
+          meta: {
+            forLoggedInOnly: true
+          }
         },
         {
           path: '/authlogin',
@@ -72,11 +85,11 @@ export default new VueRouter({
           name: 'people',
           component: People
         },
-        {
-          path: '/test',
-          name: 'testt',
-          component: AuthorizedClients
-        },
+        // {
+        //   path: '/test',
+        //   name: 'testt',
+        //   component: AuthorizedClients
+        // },
         {
           path: '*',
           component: NotFoundView

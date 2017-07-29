@@ -1,13 +1,15 @@
 <template>
-    <div class="error">
-      <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--3-col">
-          <img style="max-width:100%" src="/img/404-goat.jpg" />
-        </div>
-        <div class="mdl-cell mdl-cell--9-col">
-          <h4>404 - The page you are looking for is not found!</h4>
-          <router-link to="/" class="mdl-navigation__link">Click here to go back to the homepage</router-link>
-        </div>
+    <div class="container">
+      <h3>Oops!</h3>
+      <h1 class="404error"> 404 - Not Found </h1>
+
+      <div class="error-details">
+          Sorry, an error has occured. Requested page not found!
+      </div>
+      <div class="error-actions">
+          <router-link class="btn btn-primary btn-lg" to="/" ><span class="glyphicon glyphicon-home"></span>Take Me Home</router-link>
+
+          <a href="https://github.com/ryankazokas/beerio-web/issues" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span> File Issue Report </a>
       </div>
     </div>
 </template>

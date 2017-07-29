@@ -1,68 +1,73 @@
 <template>
 
-  <div class="mdl-grid">
-    <div class="mdl-layout-spacer"></div>
+  <div class="container">
 
-      <div class="mdl-cell mdl-cell--8-col content mdl-color-text--grey-800">
-          <div v-show="editable">
-            <md-button v-show="!isEditing" @click.native="editProfile()"class="md-primary"><md-icon>edit</md-icon> Edit Profile</md-button>
-            <md-button v-show="isEditing" @click.native="saveProfile()"class="md-primary"><md-icon>save</md-icon> Save Profile</md-button>
-          </div>
-          <div v-show="loadingDetail" class="mdl-spinner mdl-js-spinner is-active"></div>
-          <div class="mdl-cell mdl-cell--8-col content mdl-color-text--grey-800">
-            <div class="mdl-grid">
-              <div class="mdl-cell">
-                <span v-if="this.user.image">
+
+      <div >
+
+          <span v-if="loadingDetail">
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped active" role="progressbar"
+              aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                Loading...
+              </div>
+            </div>
+          </span>
+          <div class="col-md-12">
+            <div class="col-md-3">
+              <span v-if="this.user.image">
                   <img :src="this.user.image" style="max-width:100%;"/>
                 </span>
                 <span v-else>
                   <img src="http://smtp.icimod.org/girc/dmis/img/user-avatar-placeholder.png" style="max-width:100%;"/>
                 </span>
-              </div>
-              <div class="mdl-cell">
-                  <h4 v-show="!isEditing">{{this.user.name}}</h4>
-                  <md-input-container  v-show="isEditing" md-inline>
-                    <label>Name</label>
-                    <md-textarea v-model="user.name"></md-textarea>
-                  </md-input-container>
+            </div>
+            <div class="col-md-9">
+                
+                <h4 v-show="!isEditing">{{this.user.name}}</h4>
+                  <div v-show="isEditing" class="form-group">
+                    <label for="name">Name:</label>
+                    <input v-model="user.name" type="text" class="form-control" id="name">
+                  </div>
+
                   <p v-show="!isEditing"><i>Member Since:</i> {{this.user.created_at}}</p>
                   <p v-show="!isEditing"><i>Bio:</i> {{this.user.bio}}</p>
-                  <md-input-container  v-show="isEditing" md-inline>
-                    <label>Bio</label>
-                    <md-textarea v-model="user.bio"></md-textarea>
-                  </md-input-container>
+                  <div v-show="isEditing" class="form-group">
+                    <label for="name">Bio:</label>
+                    <input v-model="user.bio" type="text" class="form-control" id="bio">
+                  </div>
+                  <div v-show="editable">
+                  <button v-show="!isEditing" v-on:click="editProfile()"class="btn btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit</button>
+                  <button v-show="isEditing" v-on:click="saveProfile()"class="btn btn-success"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save</button>
+                </div>
+            </div>
+            
+          </div>
+          <div class="col-md-12">
+            <h3>Recently Liked</h3>
+            <div class="list-group">
+
+              <div class="list-group-item clearfix" v-for="individualItem in detailList">
+                <div class="col-md-2" v-if="individualItem.data.labels">
+                  <img style="max-width:30%" :src="individualItem.data.labels.medium" />
+                </div>
+                <div class="col-md-2" v-else>
+                  <img style="max-width:30%" src="https://www.crafthounds.com/wp-content/uploads/2016/11/No-Image-Available.png" />
+                </div>
+                <div class="col-md-10">
+                <h4>{{ individualItem.data.name }}</h4>
+                <small>Liked on: {{ individualItem.data.favorited | formatDate(individualItem.data.favorited)  }}</small>
+                <span class="pull-right">
+                  <router-link :to="{ name: 'item', params: { type: individualItem.data.type,id: individualItem.data.id }}" class="btn btn-primary">View</router-link>
+                </span>
+                </div>
 
               </div>
             </div>
-            <h4>Recently Liked</h4>
-            <div class="mdl-grid">
-
-              <div v-for="individualItem in detailList" class="mdl-card mdl-cell mdl-cell--3-col mdl-cell--6-col-tablet mdl-shadow--2dp">
-                <figure class="mdl-card__media" v-if="individualItem.data.labels">
-                  <img   :src="individualItem.data.labels.medium" />
-                </figure>
-                <figure class="mdl-card__media" v-else>
-                  <img   src="https://www.crafthounds.com/wp-content/uploads/2016/11/No-Image-Available.png" />
-                </figure>
-
-                <div class="mdl-card__title">
-                  <h1 class="mdl-card__title-text">{{ individualItem.data.name }}</h1>
-                </div>
-                <div class="mdl-card__supporting-text">
-                  <p>Liked on: {{ individualItem.data.favorited | formatDate(individualItem.data.favorited)  }}</p>
-                </div>
-                <div class="mdl-card__actions mdl-card--border">
-
-                  <router-link :to="{ name: 'item', params: { type: individualItem.data.type,id: individualItem.data.id }}" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Read More</router-link>
-                  <div class="mdl-layout-spacer"></div>
-                  <!--<button class="mdl-button mdl-button--icon mdl-button--colored"><i class="material-icons">favorite</i></button>
-                  <router-link :to="{ name: 'item', params: { type: individualItem.data.type,id: individualItem.data.id }}" class="mdl-button mdl-button--icon mdl-button--colored"><i class="material-icons">share</i></router-link>-->
-
-                </div>
-              </div>
-            </div>
+            
 
           </div>
+
 
 
 
@@ -101,12 +106,14 @@
 
             if(this.$route.params.id){
               this.fetchUser(this.$route.params.id);
+              this.fetchFavorites(this.$route.params.id);
             }else{
 
               this.fetchUser();
+              this.fetchFavorites();
             }
 
-            this.fetchFavorites();
+            
 
         },
         methods:{

@@ -5,8 +5,8 @@ export default function (Vue){
       'use strict';
       var snackbarContainer = document.querySelector('#notification-snackbar');
       var data = {message: message};
-      if(data.message)
-        snackbarContainer.MaterialSnackbar.showSnackbar(data);
+      //if(data.message)
+        //snackbarContainer.MaterialSnackbar.showSnackbar(data);
     }
   }
 

@@ -1,5 +1,5 @@
 <template>
-    <md-layout>
+    <!--<md-layout>
       <md-layout md-flex="30"></md-layout>
       <md-layout md-tag="form" novalidate @submit.stop.prevent="submit" md-align="center">
         <span v-if="errorMessage">
@@ -31,8 +31,22 @@
           </md-layout>
         </md-layout>
     <md-layout md-flex="30"></md-layout>
-</md-layout>
+</md-layout>-->
+  <div class = "container">
+    <div class="wrapper">
 
+      <h3 class="form-signin-heading">Welcome Back! Please Sign In</h3>
+      <hr class="colorgraph"><br>
+      <span v-if="errorMessage">
+        <p class="warning-label">{{errorMessage}}</p>
+      </span>
+      <input v-model="email" type="text" class="form-control" name="email" placeholder="Email" required="" autofocus="" />
+      <input v-model="password"  type="password" class="form-control" name="Password" placeholder="Password" required=""/>     		  
+    
+      <button v-on:click="login" class="btn btn-lg btn-primary btn-block"  name="Submit" value="Login" type="button">Login</button>  			
+
+    </div>
+  </div>
 </template>
 
     <script>
