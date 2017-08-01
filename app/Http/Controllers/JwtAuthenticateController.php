@@ -13,13 +13,37 @@ use Illuminate\Support\Facades\Auth;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Log;
+use Validator;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Support\Facades\Hash;
 
 class JwtAuthenticateController extends Controller
 {
-
+    use ValidatesRequests;
+    
     public function index()
     {
         return response()->json(['auth'=>Auth::user(), 'users'=>User::all()]);
+    }
+
+    public function register(Request $request){
+        //return  $request->all();
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            'email'    => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6',
+            'confirmPassword' => 'required|same:password'
+        ]);
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }
+
+        $user = new User(['name' => $request->name, 'email' => $request->email, 'password'=>Hash::make($request->password)]);
+        $user->save();
+        return $user;
     }
 
     public function authenticate(Request $request)

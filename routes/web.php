@@ -24,3 +24,6 @@ Route::get('/{vue?}', function () { return view('app'); })->where('vue', '[\/\w\
 // Route::get('/beer', 'BeerController@index');
 //
 // Auth::routes();
+
+//Auth::routes();
+

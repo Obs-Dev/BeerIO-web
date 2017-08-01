@@ -27,8 +27,8 @@
 
               </ul>
             </li>
-            <li v-show="!this.$auth.isAuthenticated()"><a href="/authlogin">Login</a></li>
-            <li v-show="!this.$auth.isAuthenticated()"><a href="/register">Register</a></li>
+            <li v-show="!this.$auth.isAuthenticated()"><router-link :to="{name:'login'}">Login</router-link></li>
+            <li v-show="!this.$auth.isAuthenticated()"><router-link :to="{name:'register'}">Register</router-link></li>
 
           </ul>
         </div><!--/.nav-collapse -->

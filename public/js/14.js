@@ -1,15 +1,15 @@
 webpackJsonp([14],{
 
-/***/ 176:
+/***/ 182:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_node_modules_vue_loader_lib_selector_type_script_index_0_Login_vue__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_node_modules_vue_loader_lib_selector_type_script_index_0_Login_vue__ = __webpack_require__(190);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_node_modules_vue_loader_lib_selector_type_script_index_0_Login_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_node_modules_vue_loader_lib_selector_type_script_index_0_Login_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_507f46ee_node_modules_vue_loader_lib_selector_type_template_index_0_Login_vue__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_507f46ee_node_modules_vue_loader_lib_selector_type_template_index_0_Login_vue__ = __webpack_require__(201);
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(2)
 /* script */
 
 /* template */
@@ -52,7 +52,7 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 186:
+/***/ 190:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61,38 +61,6 @@ if (false) {(function () {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -161,18 +129,14 @@ exports.default = {
 
 /***/ }),
 
-/***/ 199:
+/***/ 201:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "container"
-  }, [_c('div', {
-    staticClass: "wrapper"
-  }, [_c('h3', {
-    staticClass: "form-signin-heading"
-  }, [_vm._v("Welcome Back! Please Sign In")]), _vm._v(" "), _c('hr', {
+  }, [_c('div', [_c('h3', [_vm._v("Welcome Back to BeerIO! Please Sign In")]), _vm._v(" "), _c('hr', {
     staticClass: "colorgraph"
   }), _c('br'), _vm._v(" "), (_vm.errorMessage) ? _c('span', [_c('p', {
     staticClass: "warning-label"
@@ -233,7 +197,13 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     on: {
       "click": _vm.login
     }
-  }, [_vm._v("Login")])])])
+  }, [_vm._v("Login")]), _vm._v("  \t\t\t\n    Don't have an account? "), _c('router-link', {
+    attrs: {
+      "to": {
+        name: 'register'
+      }
+    }
+  }, [_vm._v("Click here to register for one! ")])], 1)])
 }
 var staticRenderFns = []
 render._withStripped = true

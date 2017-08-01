@@ -39,7 +39,7 @@ Route::group(['prefix' => 'v2', 'middleware' => ['ability:super-user,create-user
 
 // Authentication route
 Route::post('authenticate', 'JwtAuthenticateController@authenticate');
-
+Route::post('register', 'JwtAuthenticateController@register');
 
 
 

@@ -10,14 +10,15 @@ const AuthorizedClients = (resolve) => require(['./components/passport/Clients.v
 const Login = (resolve) => require(['./components/Login.vue'], resolve)
 const Logout = (resolve) => require(['./components/Logout.vue'], resolve)
 const Dashboard = (resolve) => require(['./components/Dashboard.vue'], resolve)
-const Items = (resolve) => require(['./components/Items.vue'], resolve).default
 const People = (resolve) => require(['./components/People.vue'], resolve)
 const Discover = (resolve) => require(['./components/Discover.vue'], resolve)
 
 //needs to be loaded  eagerly because used in nested routes.
 //Nested routes have issues with going directly to them, or being reloaded
+import Items from './components/Items'; 
 import ItemDetail from './components/ItemDetail'; 
 import Profile from './components/Profile'; 
+import Register from './components/Register'; 
 
 export default new VueRouter({
     mode: 'history',
@@ -84,6 +85,11 @@ export default new VueRouter({
           path: '/people',
           name: 'people',
           component: People
+        },
+        {
+          path: '/authregister',
+          name: 'register',
+          component: Register
         },
         // {
         //   path: '/test',

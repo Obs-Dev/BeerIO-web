@@ -1,41 +1,9 @@
 <template>
-    <!--<md-layout>
-      <md-layout md-flex="30"></md-layout>
-      <md-layout md-tag="form" novalidate @submit.stop.prevent="submit" md-align="center">
-        <span v-if="errorMessage">
-                      <p class="warning-label">{{errorMessage}}</p>
-                    </span>
-          <md-layout md-tag="md-card" md-column >
 
-            <md-card-header>
-              <div class="md-title">Login</div>
-            </md-card-header>
-
-            <md-card-content>
-              <md-input-container>
-                <md-icon>person</md-icon>
-                <label>Email</label>
-                <md-input email required v-model="email" />
-              </md-input-container>
-
-              <md-input-container md-has-password>
-                <md-icon>lock</md-icon>
-                <label>Password</label>
-                <md-input type="password" required v-model="password" />
-              </md-input-container>
-            </md-card-content>
-
-            <md-card-actions>
-              <md-button v-show="!loadingLogin" type="button" @click.native="login">Login</md-button>
-            </md-card-actions>
-          </md-layout>
-        </md-layout>
-    <md-layout md-flex="30"></md-layout>
-</md-layout>-->
   <div class = "container">
-    <div class="wrapper">
+    <div>
 
-      <h3 class="form-signin-heading">Welcome Back! Please Sign In</h3>
+      <h3>Welcome Back to BeerIO! Please Sign In</h3>
       <hr class="colorgraph"><br>
       <span v-if="errorMessage">
         <p class="warning-label">{{errorMessage}}</p>
@@ -44,7 +12,7 @@
       <input v-model="password"  type="password" class="form-control" name="Password" placeholder="Password" required=""/>     		  
     
       <button v-on:click="login" class="btn btn-lg btn-primary btn-block"  name="Submit" value="Login" type="button">Login</button>  			
-
+      Don't have an account? <router-link :to="{name:'register'}">Click here to register for one! </router-link>
     </div>
   </div>
 </template>

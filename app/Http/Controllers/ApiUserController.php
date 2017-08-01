@@ -6,9 +6,12 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use App\Models\User;
 use Auth;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Validator;
 
 class ApiUserController extends Controller
 {
+    use ValidatesRequests;
     /**
      * Display a listing of the resource.
      *
