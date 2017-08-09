@@ -53,20 +53,6 @@ return [
             'strict' => true,
             'engine' => null,
         ],
-        'mysql_remote' => [
-            'driver' => 'mysql',
-            'host' => $_SERVER['DB_HOST'],
-            'port' => $_SERVER['DB_PORT'],
-            'database' => $_SERVER['DB_DATABASE'],
-            'username' => $_SERVER['DB_USERNAME'],
-            'password' => $_SERVER['DB_PASSWORD'],
-            'unix_socket' => env('DB_SOCKET', ''),
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_unicode_ci',
-            'prefix' => '',
-            'strict' => true,
-            'engine' => null,
-        ],
 
         'pgsql' => [
             'driver' => 'pgsql',
