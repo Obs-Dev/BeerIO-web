@@ -53,18 +53,6 @@ return [
             'strict' => true,
             'engine' => null,
         ],
-        'mysql_rds' => [
-            'driver'    => 'mysql',
-            'host'      => $_ENV['RDS_HOSTNAME'],
-            'database'  => $_ENV['RDS_DB_NAME'],
-            'username'  => $_ENV['RDS_USERNAME'],
-            'password'  => $_ENV['RDS_PASSWORD'],
-            'charset'   => 'utf8',
-            'collation' => 'utf8_unicode_ci',
-            'prefix'    => '',
-            'strict'    => false,
-            'engine'    => null,
-        ],
         'pgsql' => [
             'driver' => 'pgsql',
             'host' => env('DB_HOST', '127.0.0.1'),
