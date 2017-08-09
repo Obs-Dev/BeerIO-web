@@ -1,7 +1,5 @@
 import VueRouter    from 'vue-router'
 
-//Define route components
-const Home = { template: '<div>home</div>' }
 
 // lazy load components
 //const ItemDetail = (resolve) => require(['./components/ItemDetail.vue'], resolve).default
@@ -12,6 +10,7 @@ const Logout = (resolve) => require(['./components/Logout.vue'], resolve)
 const Dashboard = (resolve) => require(['./components/Dashboard.vue'], resolve)
 const People = (resolve) => require(['./components/People.vue'], resolve)
 const Discover = (resolve) => require(['./components/Discover.vue'], resolve)
+const Home = (resolve) => require(['./components/Home.vue'], resolve)
 
 //needs to be loaded  eagerly because used in nested routes.
 //Nested routes have issues with going directly to them, or being reloaded
@@ -26,7 +25,10 @@ export default new VueRouter({
       routes: [
         {
           path: '/',
-          component: Home
+          component: Home,
+          meta: {
+            forVisitors: true
+          }
         },
         {
           path: '/items',

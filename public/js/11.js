@@ -1,13 +1,13 @@
 webpackJsonp([11],{
 
-/***/ 186:
+/***/ 190:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_node_modules_vue_loader_lib_selector_type_script_index_0_People_vue__ = __webpack_require__(193);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_node_modules_vue_loader_lib_selector_type_script_index_0_People_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_node_modules_vue_loader_lib_selector_type_script_index_0_People_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_76b4b1da_node_modules_vue_loader_lib_selector_type_template_index_0_People_vue__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_node_modules_vue_loader_lib_selector_type_script_index_0_NotFoundView_vue__ = __webpack_require__(196);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_node_modules_vue_loader_lib_selector_type_script_index_0_NotFoundView_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_node_modules_vue_loader_lib_selector_type_script_index_0_NotFoundView_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_41864b82_node_modules_vue_loader_lib_selector_type_template_index_0_NotFoundView_vue__ = __webpack_require__(203);
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
@@ -21,15 +21,15 @@ var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_node_modules_vue_loader_lib_selector_type_script_index_0_People_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_76b4b1da_node_modules_vue_loader_lib_selector_type_template_index_0_People_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_node_modules_vue_loader_lib_selector_type_script_index_0_NotFoundView_vue___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_41864b82_node_modules_vue_loader_lib_selector_type_template_index_0_NotFoundView_vue__["a" /* default */],
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/People.vue"
+Component.options.__file = "resources/assets/js/components/NotFoundView.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] People.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] NotFoundView.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -38,9 +38,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-76b4b1da", Component.options)
+    hotAPI.createRecord("data-v-41864b82", Component.options)
   } else {
-    hotAPI.reload("data-v-76b4b1da", Component.options)
+    hotAPI.reload("data-v-41864b82", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -52,39 +52,15 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 193:
+/***/ 196:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -103,119 +79,52 @@ Object.defineProperty(exports, "__esModule", {
 //
 
 exports.default = {
-  data: function data() {
-    return {
-
-      loadingDetail: true,
-      users: [],
-      term: ""
-    };
-  },
-  mounted: function mounted() {
-
-    console.log('People Component mounted.');
-  },
-
-  watch: {
-    // whenever question changes, this function will run
-    term: function term(val) {
-      this.fetchUsers(this.term);
+    mounted: function mounted() {
+        console.log('Page not found!');
     }
-  },
-  methods: {
-    search: function search(event) {
-      event.preventDefault();
-      this.fetchUsers(this.term);
-    }
-
-  }
 };
 
 /***/ }),
 
-/***/ 202:
+/***/ 203:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "container"
-  }, [_c('div', {
-    staticClass: "col-md-12"
-  }, [_c('form', {
-    on: {
-      "submit": _vm.search
-    }
-  }, [_c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
+  }, [_c('h3', [_vm._v("Oops!")]), _vm._v(" "), _c('h1', {
+    staticClass: "404error"
+  }, [_vm._v(" 404 - Not Found ")]), _vm._v(" "), _c('div', {
+    staticClass: "error-details"
+  }, [_vm._v("\n      Sorry, an error has occured. Requested page not found!\n  ")]), _vm._v(" "), _c('div', {
+    staticClass: "error-actions"
+  }, [_c('router-link', {
+    staticClass: "btn btn-primary btn-lg",
     attrs: {
-      "for": "name"
+      "to": "/"
     }
-  }, [_vm._v("Search:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.term),
-      expression: "term"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "id": "term"
-    },
-    domProps: {
-      "value": (_vm.term)
-    },
-    on: {
-      "change": _vm.search,
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.term = $event.target.value
-      }
-    }
-  })])]), _vm._v(" "), (_vm.users.length == 0) ? _c('span', [_vm._v("\n        No users found. Try another search term.\n    ")]) : _vm._e(), _vm._v(" "), _c('ul', {
-    staticClass: "media-list"
-  }, _vm._l((_vm.users), function(user) {
-    return _c('li', {
-      key: user.email,
-      staticClass: "media"
-    }, [_c('router-link', {
-      attrs: {
-        "to": {
-          name: 'profileId',
-          params: {
-            id: user.id
-          }
-        }
-      }
-    }, [_c('div', {
-      staticClass: "media-left"
-    }, [(user.image) ? _c('span', [_c('img', {
-      attrs: {
-        "src": user.image,
-        "alt": user.name
-      }
-    })]) : _c('span', [_c('img', {
-      attrs: {
-        "src": "http://smtp.icimod.org/girc/dmis/img/user-avatar-placeholder.png",
-        "alt": user.name
-      }
-    })])]), _vm._v(" "), _c('div', {
-      staticClass: "media-body"
-    }, [_c('h4', {
-      staticClass: "media-heading"
-    }, [_vm._v(_vm._s(user.name))]), _vm._v(" "), _c('p', [_vm._v(_vm._s(user.email))]), _vm._v(" "), _c('p', [_vm._v(_vm._s(user.bio))])])])], 1)
-  }))])])
+  }, [_c('span', {
+    staticClass: "glyphicon glyphicon-home"
+  }), _vm._v("Take Me Home")]), _vm._v(" "), _vm._m(0)], 1)])
 }
-var staticRenderFns = []
+var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('a', {
+    staticClass: "btn btn-default btn-lg",
+    attrs: {
+      "href": "https://github.com/ryankazokas/beerio-web/issues"
+    }
+  }, [_c('span', {
+    staticClass: "glyphicon glyphicon-envelope"
+  }), _vm._v(" File Issue Report ")])
+}]
 render._withStripped = true
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-76b4b1da", esExports)
+     require("vue-hot-reload-api").rerender("data-v-41864b82", esExports)
   }
 }
 
